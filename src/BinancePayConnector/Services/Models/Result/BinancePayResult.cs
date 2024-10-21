@@ -1,0 +1,72 @@
+﻿using System.Net;
+using BinancePayConnector.Models.C2B.Common.Enums;
+using BinancePayConnector.Models.C2B.RestApi.Common;
+using BinancePayConnector.Models.C2B.RestApi.Common.Enums;
+
+namespace BinancePayConnector.Services.Models.Result;
+
+/// <summary>
+/// Wrapper over base Binance Pay API response (<see cref="WebApiResult{TData}"/>).
+/// </summary>
+/// <typeparam name="TBody">Type of response body, same for <see cref="WebApiResult{TData}"/>.</typeparam>
+/// <param name="requestStatus">Enum value from <see cref="RequestStatus"/>.</param>
+/// <param name="binanceStatusCode">Enum value from <see cref="BinanceStatusCodeConst"/>.</param>
+/// <param name="body">Response body.</param>
+/// <param name="errorMessage">Error message of response.</param>
+public class BinancePayResult<TBody>(
+    string requestStatus,
+    string binanceStatusCode,
+    TBody? body,
+    string? errorMessage = null)
+{
+    private readonly HttpStatusCode? httpStatusCode;
+
+    /// <param name="statusCode">Http status code of response, usually use if request was failed.</param>
+    /// <param name="requestStatus">Enum value from <see cref="RequestStatus"/>.</param>
+    /// <param name="binanceStatusCode">Enum value from <see cref="BinanceStatusCodeConst"/>.</param>
+    /// <param name="body">Response body.</param>
+    /// <param name="errorMessage">Error message of response.</param>
+    public BinancePayResult(
+        HttpStatusCode statusCode,
+        string requestStatus,
+        string binanceStatusCode,
+        TBody? body,
+        string? errorMessage = null)
+        : this(requestStatus, binanceStatusCode, body, errorMessage)
+        => httpStatusCode = statusCode;
+
+    /// <summary>
+    /// If request was failed, then StatusCode is originally HttpStatusCode of http response,
+    /// otherwise StatusCode is converted BinanceStatusCode to Http as <see cref="BinanceStatusCodeConst"/>.<see cref="BinanceStatusCodeConst.MapToWeb"/>.
+    /// </summary>
+    public HttpStatusCode StatusCode => httpStatusCode ?? ConvertBinanceStatusCodeToWeb(binanceStatusCode);
+
+    /// <summary>
+    /// It's binance status code, but if BinanceStatusCode is <see cref="BinanceStatusCode.RequestError"/>
+    /// it means your request to Binance Pay Api is failed, please check StatusCode of this object to check originally returned http status code.
+    /// </summary>
+    public BinanceStatusCode BinanceStatusCode => ConvertStringBinanceStatusCodeToEnum(binanceStatusCode);
+
+    /// <summary>
+    /// Response body from Binance Pay Api, based on your request.
+    /// </summary>
+    public TBody? Body { get; } = body;
+
+    /// <summary>
+    /// Error message of response.
+    /// </summary>
+    public string? ErrorMessage { get; } = errorMessage;
+
+    public bool IsSuccess => requestStatus == RequestStatus.Success;
+
+    public bool IsFailure => requestStatus == RequestStatus.Fail;
+
+    private static HttpStatusCode ConvertBinanceStatusCodeToWeb(string statusCode)
+        => (HttpStatusCode)BinanceStatusCodeConst.MapToWeb
+            .GetValueOrDefault(statusCode, (int)HttpStatusCode.InternalServerError);
+
+    private static BinanceStatusCode ConvertStringBinanceStatusCodeToEnum(string text)
+        => int.TryParse(text, out var value)
+            ? (BinanceStatusCode)value
+            : BinanceStatusCode.UnknownError;
+}

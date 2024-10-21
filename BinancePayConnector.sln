@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePay.Console", "examples\BinancePay.Console\BinancePay.Console.csproj", "{B9471F42-879E-4168-8686-5FCBBDD396E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePay.WebApi", "examples\BinancePay.WebApi\BinancePay.WebApi.csproj", "{D9B51B6C-3C3E-4D20-B974-286F800A5DDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePayConnector", "src\BinancePayConnector\BinancePayConnector.csproj", "{B336B66D-F286-4B35-A315-8B9BEF1DF7DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{5853E481-6057-4D4D-BA16-859179CF24FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{25EDF467-2306-462B-BA0F-C1B1FD040996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceMeasure", "tests\PerformanceMeasure\PerformanceMeasure.csproj", "{9AB7D95F-3404-43C6-8AD3-1B8D63A185B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePaySlim.Console", "examples\BinancePaySlim.Console\BinancePaySlim.Console.csproj", "{0BEA179F-9492-4BDA-8414-27F8F272DEE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{52EA4022-6107-4F22-A08C-9BD53F7C6D38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{C0A1B386-CE9E-4D6E-A9B6-702DD16E7D23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9471F42-879E-4168-8686-5FCBBDD396E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9471F42-879E-4168-8686-5FCBBDD396E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9471F42-879E-4168-8686-5FCBBDD396E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9471F42-879E-4168-8686-5FCBBDD396E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B336B66D-F286-4B35-A315-8B9BEF1DF7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B336B66D-F286-4B35-A315-8B9BEF1DF7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B336B66D-F286-4B35-A315-8B9BEF1DF7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B336B66D-F286-4B35-A315-8B9BEF1DF7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9B51B6C-3C3E-4D20-B974-286F800A5DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B51B6C-3C3E-4D20-B974-286F800A5DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B51B6C-3C3E-4D20-B974-286F800A5DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B51B6C-3C3E-4D20-B974-286F800A5DDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AB7D95F-3404-43C6-8AD3-1B8D63A185B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB7D95F-3404-43C6-8AD3-1B8D63A185B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB7D95F-3404-43C6-8AD3-1B8D63A185B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB7D95F-3404-43C6-8AD3-1B8D63A185B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BEA179F-9492-4BDA-8414-27F8F272DEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BEA179F-9492-4BDA-8414-27F8F272DEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BEA179F-9492-4BDA-8414-27F8F272DEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BEA179F-9492-4BDA-8414-27F8F272DEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B9471F42-879E-4168-8686-5FCBBDD396E7} = {5853E481-6057-4D4D-BA16-859179CF24FF}
+		{D9B51B6C-3C3E-4D20-B974-286F800A5DDF} = {5853E481-6057-4D4D-BA16-859179CF24FF}
+		{9AB7D95F-3404-43C6-8AD3-1B8D63A185B2} = {25EDF467-2306-462B-BA0F-C1B1FD040996}
+		{0BEA179F-9492-4BDA-8414-27F8F272DEE1} = {5853E481-6057-4D4D-BA16-859179CF24FF}
+	EndGlobalSection
+EndGlobal
