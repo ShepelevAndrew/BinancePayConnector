@@ -1,4 +1,5 @@
 ﻿using BinancePayConnector;
+using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Config.Options;
 using BinancePayConnector.Helpers;
 using BinancePayConnector.Models.C2B.Common.Enums;
@@ -12,7 +13,6 @@ using BinancePayConnector.Models.C2B.Webhook.BalanceReport;
 using BinancePayConnector.Models.C2B.Webhook.Common;
 using BinancePayConnector.Models.C2B.Webhook.Common.Enums;
 using BinancePayConnector.Models.C2B.Webhook.Order;
-using BinancePayConnector.Services.Models.Result;
 using Newtonsoft.Json;
 
 const string apiKey = "xz4t6ccz71826dprluewhkyc8of39iypbykadjx8qljfuy293nfsojtsid5zofwh";
@@ -70,7 +70,7 @@ PressKeyToStop("Press any key to stop application...");
 
 return;
 
-CreateOrder CreateOrder()
+CreateOrderRequest CreateOrder()
     => new(
         new Env(
             TerminalType: TerminalType.App
@@ -89,10 +89,10 @@ CreateOrder CreateOrder()
             )
         ],
         OrderExpireTime: DateTimeOffset.UtcNow.AddMinutes(5).ToUnixTimeMilliseconds(),
-        WebhookUrl: "https://9f0a-188-163-49-145.ngrok-free.app"
+        WebhookUrl: "https://96b4-188-163-49-145.ngrok-free.app/api/binancepay/webhooks/order"
     );
 
-QueryOrder GetOrder(string prepayId) => new(PrepayId: prepayId);
+QueryOrderRequest GetOrder(string prepayId) => new(PrepayId: prepayId);
 
 TData DeserializeJson<TData>(string json)
     => JsonConvert.DeserializeObject<TData>(json)

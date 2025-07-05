@@ -8,4 +8,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.ProfitSharing.AddReceiver;
 /// <param name="Account">Binance id of Receiver.</param>
 public sealed record AddReceiver(
     string Account
-) : ICommand<AddReceiverResult>;
+) : IRequest<AddReceiverResult>;

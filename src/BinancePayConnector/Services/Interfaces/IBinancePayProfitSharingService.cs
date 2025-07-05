@@ -1,10 +1,10 @@
-﻿using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.AddReceiver;
+﻿using BinancePayConnector.Clients.Models.Result;
+using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.AddReceiver;
 using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.DeleteReceiver;
 using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.QueryReceiver;
 using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.QuerySplit;
 using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.SplitReturn;
 using BinancePayConnector.Models.C2B.RestApi.ProfitSharing.SubmitSplit;
-using BinancePayConnector.Services.Models.Result;
 
 namespace BinancePayConnector.Services.Interfaces;
 

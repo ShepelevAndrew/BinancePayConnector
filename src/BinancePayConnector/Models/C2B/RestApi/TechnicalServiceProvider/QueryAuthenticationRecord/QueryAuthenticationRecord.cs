@@ -9,4 +9,4 @@ public sealed record QueryAuthenticationRecord(
     int Page,
     int Rows,
     string? MerchantId
-) : ICommand<QueryAuthenticationRecordResult>;
+) : IRequest<QueryAuthenticationRecordResult>;

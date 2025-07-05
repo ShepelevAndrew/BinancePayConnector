@@ -6,6 +6,6 @@ namespace BinancePayConnector.Models.C2B.RestApi.Convert.ExecuteQuote;
 /// You can see this in official documentation: <see href="https://developers.binance.com/docs/binance-pay/api-convert-execute-quote#request-parameters"/>.
 /// </summary>
 /// <param name="QuoteId">Quote Id for execute quote</param>
-public sealed record ExecuteQuote(
+public sealed record ExecuteQuoteRequest(
     string QuoteId
-) : ICommand<ExecuteQuoteResult>;
+) : IRequest<ExecuteQuoteResult>;

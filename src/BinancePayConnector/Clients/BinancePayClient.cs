@@ -1,9 +1,12 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using BinancePayConnector.Clients.Exceptions;
+using BinancePayConnector.Clients.Extensions;
 using BinancePayConnector.Clients.JsonSerialization.Resolvers;
+using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Config.Endpoints;
 using BinancePayConnector.Config.Options;
+using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Common;
 using BinancePayConnector.Models.C2B.RestApi.Common.Enums;
 using Microsoft.Extensions.Options;
@@ -13,45 +16,32 @@ namespace BinancePayConnector.Clients;
 
 public class BinancePayClient : IBinancePayClient
 {
-    private readonly string apiKey;
-    private readonly string apiSecret;
+    private readonly string _apiKey;
+    private readonly string _apiSecret;
 
     public BinancePayClient(
         string apiKey,
         string apiSecret)
     {
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
+        _apiKey = apiKey;
+        _apiSecret = apiSecret;
     }
 
     public BinancePayClient(IOptions<BinancePayConfig> config)
     {
-        apiKey = config.Value.ApiKey;
-        apiSecret = config.Value.ApiSecret;
+        _apiKey = config.Value.ApiKey;
+        _apiSecret = config.Value.ApiSecret;
     }
 
     public string ApiBaseUri => BinancePayEndpoints.ApiBaseUrl + '/';
 
-    public async Task<WebApiResult<TResponse>> SendBinanceAsync<TResponse>(
+    public async Task<BinancePayResult<TResponse>> SendBinanceAsync<TResponse>(
         HttpMethod method,
         string path,
         CancellationToken ct = default)
-        => await SendAsync<WebApiResult<TResponse>, object>(method, path, ct: ct);
+        => await SendBinanceAsync<TResponse, object>(method, path, ct: ct);
 
-    public async Task<WebApiResult<TResponse>> SendBinanceAsync<TResponse, TContent>(
-        HttpMethod method,
-        string path,
-        TContent? content = default,
-        CancellationToken ct = default)
-        => await SendAsync<WebApiResult<TResponse>, TContent>(method, path, content, ct);
-
-    public async Task<TResponse> SendAsync<TResponse>(
-        HttpMethod method,
-        string path,
-        CancellationToken ct = default)
-        => await SendAsync<TResponse, object>(method, path, ct: ct);
-
-    public async Task<TResponse> SendAsync<TResponse, TContent>(
+    public async Task<BinancePayResult<TResponse>> SendBinanceAsync<TResponse, TContent>(
         HttpMethod method,
         string path,
         TContent? content = default,
@@ -65,12 +55,15 @@ public class BinancePayClient : IBinancePayClient
         using var client = new HttpClient();
         var response = await client.SendAsync(requestMessage, ct);
 
-        await EnsureSuccessStatusCode(response);
+        if (!response.IsSuccessStatusCode)
+        {
+            return await DeserializeBadResponse<TResponse>(response);
+        }
 
         var responseData = await response.Content.ReadAsStringAsync(ct);
-        var result = DeserializeJsonToObject<TResponse>(responseData);
+        var result = DeserializeJsonToObject<WebApiResult<TResponse>>(responseData);
 
-        return result;
+        return result.AsBinancePayResult();
     }
 
     private static string? GetJsonOrNullByObject<TContent>(TContent? content)
@@ -91,8 +84,8 @@ public class BinancePayClient : IBinancePayClient
         => BinanceHttpHeadersBuilder.Init()
             .WithTimestamp()
             .WithNonce()
-            .WithCertificate(apiKey)
-            .WithSignature(body, apiSecret)
+            .WithCertificate(_apiKey)
+            .WithSignature(body, _apiSecret)
             .Build();
 
     private static HttpRequestMessage BuildRequestMessage(
@@ -134,29 +127,28 @@ public class BinancePayClient : IBinancePayClient
         return new StringContent(json, Encoding.UTF8, httpType);
     }
 
-    private static async Task EnsureSuccessStatusCode(HttpResponseMessage response)
+    private static async Task<BinancePayResult<TResponse>> DeserializeBadResponse<TResponse>(HttpResponseMessage response)
     {
-        if (response.IsSuccessStatusCode)
-        {
-            return;
-        }
-
         var responseData = await response.Content.ReadAsStringAsync();
         try
         {
             var result = DeserializeJsonToObject<WebApiResult<object>>(responseData);
 
-            throw new BinancePayRequestException(
-                message: result.ErrorMessage,
+            return new BinancePayResult<TResponse>(
+                errorMessage: result.ErrorMessage,
                 statusCode: response.StatusCode,
-                binanceStatusCode: result.Status);
+                binanceStatusCode: result.Status,
+                requestStatus: RequestStatus.Fail,
+                body: default);
         }
         catch(BinancePayDeserializeException e)
         {
-            throw new BinancePayRequestException(
-                message: e.Message,
+            return new BinancePayResult<TResponse>(
+                errorMessage: e.Message,
                 statusCode: response.StatusCode,
-                binanceStatusCode: BinanceStatusCodeConst.RequestError);
+                binanceStatusCode: BinanceStatusCodeConst.RequestError,
+                requestStatus: RequestStatus.Fail,
+                body: default);
         }
     }
 

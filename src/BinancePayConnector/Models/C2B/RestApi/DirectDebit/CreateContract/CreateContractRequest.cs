@@ -15,7 +15,7 @@ namespace BinancePayConnector.Models.C2B.RestApi.DirectDebit.CreateContract;
 /// <param name="FirstDeductTime">Mandatory if periodic = true. first deduct time, must be a future time in milliseconds.</param>
 /// <param name="MerchantAccountNo">The userID/user account in merchant side e.g. xxx@gmail.com</param>
 /// <param name="ContractEndTime">	If not specified, contractEndTime will be the time after 1095 days (about 3 years). maximum is 1095 days in milliseconds.</param>
-public sealed record CreateContract(
+public sealed record CreateContractRequest(
     string MerchantContractCode,
     string ServiceName,
     string ScenarioCode,
@@ -30,4 +30,4 @@ public sealed record CreateContract(
     string? MerchantAccountNo = null,
     long? RequestExpireTime = null,
     long? ContractEndTime = null
-) : ICommand<CreateContractResult>;
+) : IRequest<CreateContractResult>;

@@ -8,4 +8,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.GetReq
 /// <param name="MerchantId"></param>
 public sealed record GetRequestRecord(
     string MerchantId
-) : ICommand<GetRequestRecordResult>;
+) : IRequest<GetRequestRecordResult>;

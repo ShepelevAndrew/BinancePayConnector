@@ -9,4 +9,4 @@ public sealed record ShareAccountId(
     string RequestId,
     string? SubMerchantId = null,
     string? WebhookUrl = null
-) : ICommand<ShareAccountIdResult>;
+) : IRequest<ShareAccountIdResult>;

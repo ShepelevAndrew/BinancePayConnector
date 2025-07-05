@@ -9,4 +9,4 @@ public sealed record SubmitSplit(
     string MerchantRequestId,
     string PrepayOrderId,
     IEnumerable<Receiver> ReceiverList
-) : ICommand<SubmitSplitResult>;
+) : IRequest<SubmitSplitResult>;

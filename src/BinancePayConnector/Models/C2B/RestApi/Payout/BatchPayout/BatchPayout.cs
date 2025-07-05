@@ -21,4 +21,4 @@ public sealed record BatchPayout(
     int TotalNumber,
     IEnumerable<TransferDetail> TransferDetailList,
     string? BizScene = null
-) : ICommand<BatchPayoutResult>;
+) : IRequest<BatchPayoutResult>;

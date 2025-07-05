@@ -6,6 +6,6 @@ namespace BinancePayConnector.Models.C2B.RestApi.Convert.QueryQuote;
 /// You can see this in official documentation: <see href="https://developers.binance.com/docs/binance-pay/api-convert-query-trade-order#request-parameters"/>.
 /// </summary>
 /// <param name="OrderId">Order id for order query.</param>
-public sealed record QueryQuote(
+public sealed record QueryQuoteRequest(
     string OrderId
-) : ICommand<QueryQuoteResult>;
+) : IRequest<QueryQuoteResult>;

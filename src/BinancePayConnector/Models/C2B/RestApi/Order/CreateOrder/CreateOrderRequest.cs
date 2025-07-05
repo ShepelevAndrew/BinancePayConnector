@@ -28,7 +28,7 @@ namespace BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
 /// <param name="WebhookUrl">The URL for order notification, can only start with http or https.</param>
 /// <param name="DirectDebitContract">Use this function order currency can only accept USDT.</param>
 /// <param name="OrderTags">Object to tag order for specific features such as profit sharing.</param>
-public sealed record CreateOrder(
+public sealed record CreateOrderRequest(
     Env Env,
     string MerchantTradeNo,
     string Description,
@@ -51,4 +51,4 @@ public sealed record CreateOrder(
     DirectDebitContract? DirectDebitContract = null,
     OrderTags? OrderTags = null,
     string? VoucherCode = null
-) : ICommand<CreateOrderResult>;
+) : IRequest<CreateOrderResult>;

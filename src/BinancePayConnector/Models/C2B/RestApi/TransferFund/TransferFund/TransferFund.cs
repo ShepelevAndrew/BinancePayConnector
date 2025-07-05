@@ -15,4 +15,4 @@ public sealed record TransferFund(
     string Currency,
     string Amount,
     string TransferType
-) : ICommand<TransferFundResult>;
+) : IRequest<TransferFundResult>;

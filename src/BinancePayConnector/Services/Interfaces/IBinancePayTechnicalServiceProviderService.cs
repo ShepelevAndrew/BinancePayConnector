@@ -1,8 +1,8 @@
-﻿using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.CreateAuthorizationRequest;
+﻿using BinancePayConnector.Clients.Models.Result;
+using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.CreateAuthorizationRequest;
 using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.GetRequestRecord;
 using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.QueryAuthenticationRecord;
 using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.QueryScopes;
-using BinancePayConnector.Services.Models.Result;
 
 namespace BinancePayConnector.Services.Interfaces;
 

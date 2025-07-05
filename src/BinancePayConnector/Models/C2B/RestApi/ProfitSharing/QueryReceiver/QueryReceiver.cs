@@ -10,4 +10,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.ProfitSharing.QueryReceiver;
 public sealed record QueryReceiver(
     int PageNum,
     int PageSize
-) : ICommand<QueryReceiverResult>;
+) : IRequest<QueryReceiverResult>;

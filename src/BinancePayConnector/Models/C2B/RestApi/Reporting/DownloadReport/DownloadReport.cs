@@ -17,4 +17,4 @@ public record DownloadReport(
     string StartDate,
     string EndDate,
     string? TransactionType = null
-) : ICommand<IEnumerable<DownloadReportResult>>;
+) : IRequest<IEnumerable<DownloadReportResult>>;

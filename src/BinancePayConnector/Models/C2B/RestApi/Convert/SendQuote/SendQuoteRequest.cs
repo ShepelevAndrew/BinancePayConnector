@@ -15,10 +15,10 @@ namespace BinancePayConnector.Models.C2B.RestApi.Convert.SendQuote;
 /// <param name="ToAsset">Currency to query from <see cref="Assets"/>, for e.g, USDT</param>
 /// <param name="FromAmount">From asset amount</param>
 /// <param name="ToAmount">To asset amount</param>
-public sealed record SendQuote(
+public sealed record SendQuoteRequest(
     string Wallet,
     string FromAsset,
     string ToAsset,
     decimal? FromAmount,
     decimal ToAmount
-) : ICommand<SendQuoteResult>;
+) : IRequest<SendQuoteResult>;

@@ -9,4 +9,4 @@ public sealed record CreateAuthorizationRequest(
     string MerchantId,
     List<string> Scopes,
     List<string> IpWhitelist
-) : ICommand<CreateAuthorizationResult>;
+) : IRequest<CreateAuthorizationResult>;

@@ -11,4 +11,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery;
 public sealed record PayoutQuery(
     string RequestId,
     IEnumerable<string>? DetailStatus = null
-) : ICommand<PayoutQueryResult>;
+) : IRequest<PayoutQueryResult>;
