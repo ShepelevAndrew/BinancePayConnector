@@ -12,7 +12,7 @@ namespace BinancePayConnector.Models.C2B.Webhook.Order;
 /// <param name="Commission">Transaction fees charged. Please refer to your contract for more info.</param>
 /// <param name="TransactionId">Debit transaction id.</param>
 /// <param name="OpenUserId">Payer unique id.</param>
-/// <param name="PassThroughInfo">Pass through info, from the <see cref="CreateOrder"/>.</param>
+/// <param name="PassThroughInfo">Pass through info, from the <see cref="CreateOrderRequest"/>.</param>
 public sealed record OrderNotification(
     string MerchantTradeNo,
     string ProductType,

@@ -9,10 +9,10 @@ namespace BinancePayConnector.Models.C2B.RestApi.Order.RefundOrder;
 /// <param name="PrepayId">The unique ID assigned by Binance for the original order to be refunded.</param>
 /// <param name="RefundAmount">You can perform multiple partial refunds, but their sum should not exceed the order amount.</param>
 /// <param name="WebhookUrl">The URL for refund order notification.</param>
-public sealed record RefundOrder(
+public sealed record RefundOrderRequest(
     string RefundRequestId,
     string PrepayId,
     decimal RefundAmount,
     string? RefundReason = null,
     string? WebhookUrl = null
-) : ICommand<RefundOrderResult>;
+) : IRequest<RefundOrderResult>;

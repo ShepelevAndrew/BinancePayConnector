@@ -48,4 +48,4 @@ public sealed record ModifySubMerchant(
     long? CertificateValidDate = null,
     long? ContractTimeIsv = null,
     IEnumerable<string>? BlockPayerKycCountries = null
-) : ICommand<AddSubMerchantResult>;
+) : IRequest<AddSubMerchantResult>;

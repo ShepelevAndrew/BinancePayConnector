@@ -12,8 +12,8 @@ namespace BinancePayConnector.Models.C2B.RestApi.Order.PaymentPayerVerification;
 /// - CORPORATE: Corporate payer.
 /// </param>
 /// <param name="Information">Information will be verified.</param>
-public sealed record PaymentPayerVerification(
+public sealed record PaymentPayerVerificationRequest(
     string BinanceId,
     string PayerType,
     List<Info>? Information = null
-) : ICommand<bool?>;
+) : IRequest<bool?>;

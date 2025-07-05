@@ -14,4 +14,4 @@ public sealed record SplitReturn(
     string? OriginMerchantRequestId = null,
     string? Description = null,
     string? WebhookUrl = null
-) : ICommand<SplitReturnResult>;
+) : IRequest<SplitReturnResult>;

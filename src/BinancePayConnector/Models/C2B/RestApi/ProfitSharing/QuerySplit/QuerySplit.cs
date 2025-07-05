@@ -10,4 +10,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.ProfitSharing.QuerySplit;
 public record QuerySplit(
     string MerchantRequestId,
     string PrepayOrderId
-) : ICommand<QuerySplitResult>;
+) : IRequest<QuerySplitResult>;

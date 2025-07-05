@@ -1,9 +1,9 @@
-﻿using BinancePayConnector.Services.Models.Result;
+﻿using BinancePayConnector.Clients.Models.Result;
 
 namespace BinancePayConnector.MediatrStyle.Abstractions;
 
-public interface ICommandHandler<in TCommand, TResponse>
-    where TCommand : ICommand<TResponse>
+public interface IRequestHandler<in TCommand, TResponse>
+    where TCommand : IRequest<TResponse>
 {
     public Task<BinancePayResult<TResponse>> ExecuteAsync(
         TCommand command,

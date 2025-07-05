@@ -1,6 +1,5 @@
 ﻿using BinancePayConnector;
 using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder;
 using BinancePayConnector.Models.C2B.Webhook.Common;
 using BinancePayConnector.Models.C2B.Webhook.Common.Enums;
 using BinancePayConnector.Models.C2B.Webhook.Order;
@@ -23,7 +22,7 @@ public class WebhookController(IBinancePay binancePay) : ControllerBase
         {
             var orderNotification = JsonConvert.DeserializeObject<OrderNotification>(webhook.Data);
 
-            var order = await binancePay.Order.QueryOrder(
+            var order = await binancePay.Order.QueryOrderByPrepayId(
                 prepayId: webhook.BizIdStr,
                 ct: ct);
         }

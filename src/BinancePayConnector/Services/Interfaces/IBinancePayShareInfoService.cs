@@ -1,5 +1,5 @@
-﻿using BinancePayConnector.Models.C2B.RestApi.ShareInfo.ShareAccoutId;
-using BinancePayConnector.Services.Models.Result;
+﻿using BinancePayConnector.Clients.Models.Result;
+using BinancePayConnector.Models.C2B.RestApi.ShareInfo.ShareAccoutId;
 
 namespace BinancePayConnector.Services.Interfaces;
 

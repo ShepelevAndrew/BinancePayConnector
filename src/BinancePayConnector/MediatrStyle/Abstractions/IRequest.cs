@@ -1,3 +1,3 @@
 ﻿namespace BinancePayConnector.MediatrStyle.Abstractions;
 
-public interface ICommand<TResponse>;
+public interface IRequest<TResponse>;

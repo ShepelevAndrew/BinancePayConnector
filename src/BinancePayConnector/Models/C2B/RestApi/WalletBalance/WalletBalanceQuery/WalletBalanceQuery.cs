@@ -13,4 +13,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.WalletBalance.WalletBalanceQuer
 public sealed record WalletBalanceQuery(
     string Wallet,
     string? Currency = null
-) : ICommand<WalletBalanceQueryResult>;
+) : IRequest<WalletBalanceQueryResult>;

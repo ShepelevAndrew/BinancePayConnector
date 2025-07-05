@@ -12,7 +12,7 @@ namespace BinancePayConnector.Models.C2B.RestApi.DirectDebit.Payment;
 /// <param name="SubMerchantId">The sub merchant account id, issued when sub merchant been created at Binance, The parameter subMerchantId is required when configuring show subMerchant info.</param>
 /// <param name="PreBizId">Prerequisite orderId like pay notification orderId for periodic debit scenario.</param>
 /// <param name="WebhookUrl">The URL for order notification.</param>
-public sealed record Payment(
+public sealed record PaymentRequest(
     string MerchantRequestId,
     long BizId,
     decimal Amount,
@@ -25,4 +25,4 @@ public sealed record Payment(
     string? ProductDetail = null,
     string? WebhookUrl = null,
     OrderTag? OrderTags = null
-) : ICommand<PaymentResult>;
+) : IRequest<PaymentResult>;

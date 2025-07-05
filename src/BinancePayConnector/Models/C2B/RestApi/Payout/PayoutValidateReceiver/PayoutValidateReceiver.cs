@@ -17,4 +17,4 @@ public sealed record PayoutValidateReceiver(
     string? RegistrationEmail = null,
     string? RegistrationMobileNumber = null,
     string? RegistrationMobileCode = null
-) : ICommand<bool?>;
+) : IRequest<bool?>;

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using BinancePayConnector.Clients;
+using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.MediatrStyle.Abstractions;
-using BinancePayConnector.Services.Models.Result;
 
 namespace BinancePayConnector.Helpers;
 
@@ -14,10 +14,10 @@ internal static class ReflectionHelper
     /// <returns>Returns type of handler.</returns>
     public static Type GetHandlerType<TResponse>()
     {
-        var interfaceType = typeof(ICommandHandler<,>);
+        var interfaceType = typeof(IRequestHandler<,>);
         var responseType = typeof(TResponse);
-        var commandType = FindClassImplementingInterface<ICommand<TResponse>>()
-            ?? throw new ArgumentException($"Cannot find class implementing {nameof(ICommand<TResponse>)}.");
+        var commandType = FindClassImplementingInterface<IRequest<TResponse>>()
+            ?? throw new ArgumentException($"Cannot find class implementing {nameof(IRequest<TResponse>)}.");
 
         var handlerType = FindClassImplementingGenericInterface(interfaceType, commandType, responseType)
             ?? throw new ArgumentException("There is no handler for this request.");
@@ -48,10 +48,10 @@ internal static class ReflectionHelper
     /// <param name="request">ICommand request.</param>
     /// <typeparam name="TResponse">Generic type of response from command request.</typeparam>
     /// <returns>Returns method info for handler executing.</returns>
-    public static MethodInfo GetHandlerExecuteMethod<TResponse>(ICommand<TResponse> request)
+    public static MethodInfo GetHandlerExecuteMethod<TResponse>(IRequest<TResponse> request)
     {
-        var methodName = nameof(ICommandHandler<ICommand<TResponse>, TResponse>.ExecuteAsync);
-        var interfaceType = typeof(ICommandHandler<,>);
+        var methodName = nameof(IRequestHandler<IRequest<TResponse>, TResponse>.ExecuteAsync);
+        var interfaceType = typeof(IRequestHandler<,>);
         var specificInterfaceType = interfaceType.MakeGenericType(request.GetType(), typeof(TResponse));
 
         var methodInfo = specificInterfaceType.GetMethod(methodName);
@@ -75,7 +75,7 @@ internal static class ReflectionHelper
     public static async Task<BinancePayResult<TResponse>> InvokeHandler<TResponse>(
         object handler,
         MethodInfo methodInfo,
-        ICommand<TResponse> request,
+        IRequest<TResponse> request,
         CancellationToken ct)
     {
         var result = await (Task<BinancePayResult<TResponse>>)methodInfo.Invoke(handler, [request, ct])!;

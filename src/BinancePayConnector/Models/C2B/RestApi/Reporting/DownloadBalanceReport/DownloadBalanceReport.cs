@@ -14,4 +14,4 @@ public record DownloadBalanceReport(
     string EndDate,
     string ReportType = "Balance",
     string? WalletType = null
-) : ICommand<string?>;
+) : IRequest<string?>;

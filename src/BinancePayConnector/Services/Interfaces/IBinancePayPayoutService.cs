@@ -1,14 +1,14 @@
-﻿using BinancePayConnector.Models.C2B.RestApi.Payout.BatchPayout;
+﻿using BinancePayConnector.Clients.Models.Result;
+using BinancePayConnector.Models.C2B.RestApi.Payout.BatchPayout;
 using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery;
 using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery.ResultModel;
 using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutValidateReceiver;
-using BinancePayConnector.Services.Models.Result;
 
 namespace BinancePayConnector.Services.Interfaces;
 
 public interface IBinancePayPayoutService
 {
-    Task<BinancePayResult<BatchPayoutResult>> BatchPay(
+    Task<BinancePayResult<BatchPayoutResult>> BatchPayout(
         BatchPayout request,
         CancellationToken ct = default);
 

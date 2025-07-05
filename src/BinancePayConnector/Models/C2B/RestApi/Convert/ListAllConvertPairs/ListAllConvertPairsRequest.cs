@@ -7,6 +7,6 @@ namespace BinancePayConnector.Models.C2B.RestApi.Convert.ListAllConvertPairs;
 /// You can see this in official documentation: <see href="https://developers.binance.com/docs/binance-pay/api-convert-get-to-selector#request-parameters"/>.
 /// </summary>
 /// <param name="FromAsset">Enum values from: <see cref="Assets"/>.</param>
-public sealed record ListAllConvertPairs(
+public sealed record ListAllConvertPairsRequest(
     string FromAsset
-) : ICommand<ListAllConvertPairsResult>;
+) : IRequest<ListAllConvertPairsResult>;

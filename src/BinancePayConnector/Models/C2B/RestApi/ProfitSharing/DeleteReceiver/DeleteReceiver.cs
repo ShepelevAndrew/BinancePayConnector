@@ -8,4 +8,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.ProfitSharing.DeleteReceiver;
 /// <param name="Account">Binance ID of receiver to be deleted.</param>
 public sealed record DeleteReceiver(
     string Account
-) : ICommand<DeleteReceiverResult>;
+) : IRequest<DeleteReceiverResult>;

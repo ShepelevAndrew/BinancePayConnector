@@ -1,9 +1,9 @@
 ﻿using BinancePayConnector.Clients.Exceptions;
+using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Common;
-using BinancePayConnector.Services.Models.Result;
 
-namespace BinancePayConnector.Services.Extensions;
+namespace BinancePayConnector.Clients.Extensions;
 
 public static class WebApiResultExtension
 {

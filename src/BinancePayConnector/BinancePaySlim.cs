@@ -1,11 +1,11 @@
 ﻿using BinancePayConnector.Clients;
+using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Clients.WebHookListener;
 using BinancePayConnector.Config.Options;
 using BinancePayConnector.Helpers;
 using BinancePayConnector.MediatrStyle.Abstractions;
 using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.Webhook.Common;
-using BinancePayConnector.Services.Models.Result;
 
 namespace BinancePayConnector;
 
@@ -43,7 +43,7 @@ public class BinancePaySlim : IBinancePaySlim
 
     // TODO: Added caching for getting methods by reflection. (optimize speed and memory allocation)
     public async Task<BinancePayResult<TResponse>> Send<TResponse>(
-        ICommand<TResponse> request,
+        IRequest<TResponse> request,
         CancellationToken ct = default)
     {
         var handlerType = ReflectionHelper.GetHandlerType<TResponse>();

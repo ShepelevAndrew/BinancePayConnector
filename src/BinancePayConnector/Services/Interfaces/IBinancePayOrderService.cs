@@ -1,30 +1,48 @@
-﻿using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.BuyerModel;
+﻿using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ShippingModel;
 using BinancePayConnector.Models.C2B.RestApi.Order.PaymentPayerVerification;
 using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultModel;
 using BinancePayConnector.Models.C2B.RestApi.Order.QueryRefund;
 using BinancePayConnector.Models.C2B.RestApi.Order.RefundOrder;
-using BinancePayConnector.Services.Models.Result;
+using BinancePayConnector.Services.Models.Order;
 
 namespace BinancePayConnector.Services.Interfaces;
 
 public interface IBinancePayOrderService
 {
     Task<BinancePayResult<CreateOrderResult>> CreateOrder(
-        CreateOrder request,
+        OrderIdentification identification,
+        OrderDetailsCrypto details,
+        IEnumerable<Goods> goods,
+        OrderUrls? urls = null,
+        OrderFeatures? features = null,
+        OrderEntities? entities = null,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryOrderResult>> QueryOrder(
-        string? prepayId = null,
-        string? merchantTradeNo = null,
+    Task<BinancePayResult<CreateOrderResult>> CreateOrder(
+        OrderIdentification identification,
+        OrderDetailsFiat details,
+        IEnumerable<Goods> goods,
+        OrderUrls? urls = null,
+        OrderFeatures? features = null,
+        OrderEntities? entities = null,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<bool?>> CloseOrder(
-        string? prepayId = null,
-        string? merchantTradeNo = null,
+    Task<BinancePayResult<QueryOrderResult>> QueryOrderByPrepayId(
+        string prepayId,
+        CancellationToken ct = default);
+
+    Task<BinancePayResult<QueryOrderResult>> QueryOrderByMerchantTradeNo(
+        string merchantTradeNo,
+        CancellationToken ct = default);
+
+    Task<BinancePayResult<bool?>> CloseOrderByPrepayId(
+        string prepayId,
+        CancellationToken ct = default);
+
+    Task<BinancePayResult<bool?>> CloseOrderByMerchantTradeNo(
+        string merchantTradeNo,
         CancellationToken ct = default);
 
     Task<BinancePayResult<RefundOrderResult>> RefundOrder(

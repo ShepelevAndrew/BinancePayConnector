@@ -7,4 +7,4 @@ namespace BinancePayConnector.Models.C2B.RestApi.TransferFund.QueryTransfer;
 /// </summary>
 public sealed record QueryTransfer(
     string TranId
-) : ICommand<QueryTransferResult>;
+) : IRequest<QueryTransferResult>;
