@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace BinancePay.WebApi.Controllers;
 
 [ApiController]
-[Route("api/webhook")]
+[Route("api/webhooks")]
 public class WebhookController(IBinancePay binancePay) : ControllerBase
 {
     [HttpPost]

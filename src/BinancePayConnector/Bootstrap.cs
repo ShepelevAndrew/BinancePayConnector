@@ -35,7 +35,7 @@ public static class Bootstrap
     {
         services.AddScoped<IBinancePayClient, BinancePayClient>();
         services.AddScoped<IBinancePay, BinancePay>();
-        services.AddScoped<IBinancePayClient, BinancePayClient>();
+        services.AddScoped<IBinancePaySlim, BinancePaySlim>();
         services.AddBinancePayServices();
     }
 

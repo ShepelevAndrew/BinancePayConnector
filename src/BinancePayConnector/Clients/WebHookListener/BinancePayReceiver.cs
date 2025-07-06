@@ -107,6 +107,7 @@ public class BinancePayReceiver : IBinancePayReceiver
         if (string.IsNullOrEmpty(requestPath))
         {
             OnReceiveWebhookRequest?.Invoke(request);
+            await context.SendOkResponse(RequestStatus.Success, ct);
             return;
         }
 
@@ -115,6 +116,7 @@ public class BinancePayReceiver : IBinancePayReceiver
         {
             callback?.Invoke(request);
             await context.SendOkResponse(RequestStatus.Success, ct);
+            return;
         }
 
         var isCallbackWithResponseExist = callbacksWithResponse.TryGetValue(requestPath, out var callbackWithResponse);
@@ -129,6 +131,7 @@ public class BinancePayReceiver : IBinancePayReceiver
             };
 
             await context.SendOkResponse(status, ct);
+            return;
         }
 
         if (!isCallbackExist || !isCallbackWithResponseExist)

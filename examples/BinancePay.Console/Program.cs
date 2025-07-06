@@ -20,7 +20,7 @@ var binancePay = new BinancePay(apiKey, apiSecret)
 
 var response = await binancePay.Order.CreateOrder(
     identification: new OrderIdentification(
-        new Env(TerminalType.App),
+        Env: new Env(TerminalType.App),
         MerchantTradeNo: BinancePayId.Generate32().Value
     ),
     details: new OrderDetailsCrypto(
