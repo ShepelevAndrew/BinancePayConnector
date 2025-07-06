@@ -4,7 +4,7 @@ public sealed class BinancePayConfig
 {
     public const string BinancePay = nameof(BinancePay);
 
-    public required string ApiKey { get; set; }
+    public string ApiKey { get; set; } = null!;
 
-    public required string ApiSecret { get; set; }
+    public string ApiSecret { get; set; } = null!;
 }

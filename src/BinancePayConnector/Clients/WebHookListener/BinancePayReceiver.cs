@@ -51,20 +51,22 @@ public class BinancePayReceiver : IBinancePayReceiver
         TryAdd(_namedCallbacksWithResponse, name, callback.Invoke);
     }
 
-    public async Task StopReceiving()
+    public Task StopReceiving()
     {
-        if (!_cts.IsCancellationRequested)
+        if (_cts.IsCancellationRequested)
+            return Task.CompletedTask;
+
+        _cts.Cancel();
+
+        if (_listener.IsListening)
         {
-            await _cts.CancelAsync();
-
-            if (_listener.IsListening)
-            {
-                _listener.Stop();
-                _listener.Close();
-            }
-
-            _cts.Dispose();
+            _listener.Stop();
+            _listener.Close();
         }
+
+        _cts.Dispose();
+
+        return Task.CompletedTask;
     }
 
     private void StartIfNotListening(CancellationToken ct)

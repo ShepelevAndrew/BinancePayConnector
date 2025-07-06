@@ -15,7 +15,7 @@ public static class HttpListenerHelper
         string requestBody;
         using (var reader = new StreamReader(context.Request.InputStream, Encoding.UTF8))
         {
-            requestBody = await reader.ReadToEndAsync(ct);
+            requestBody = await reader.ReadToEndAsync();
         }
 
         return JsonConvert.DeserializeObject<WebHookRequest>(requestBody)

@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Text;
+﻿using System.Text;
 using BinancePayConnector.Clients.Exceptions;
 using BinancePayConnector.Clients.Extensions;
 using BinancePayConnector.Clients.JsonSerialization.Resolvers;
@@ -123,8 +122,8 @@ public class BinancePayClient : IBinancePayClient
             return null;
         }
 
-        var httpType = new MediaTypeHeaderValue("application/json");
-        return new StringContent(json, Encoding.UTF8, httpType);
+        const string httpMediaType = "application/json";
+        return new StringContent(json, Encoding.UTF8, httpMediaType);
     }
 
     private static async Task<BinancePayResult<TResponse>> DeserializeBadResponse<TResponse>(HttpResponseMessage response)

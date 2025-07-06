@@ -2,7 +2,7 @@
 
 public sealed class BinancePayWebhookConfig
 {
-    public required string BaseUri { get; init; }
+    public string BaseUri { get; init; } = null!;
 
     public string? OrderRoute { get; init; }
 }
