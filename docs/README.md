@@ -1,4 +1,4 @@
-# BinancePayConnector
+# BinancePayConnector – Seamless Binance Pay Integration for .NET 💳🔐
 
 **BinancePayConnector** is a .NET library that simplifies integration with the [Binance Pay API](https://developers.binance.com/docs/binance-pay) for merchants, platforms, and service providers. It supports C2B flows like order creation, refunds, payouts, and webhook event handling — all in a strongly typed, modular, and extensible architecture.
 
