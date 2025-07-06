@@ -1,6 +1,7 @@
 ﻿using BinancePayConnector.Clients;
 using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Config.Endpoints;
+using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CloseOrder;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
@@ -11,7 +12,7 @@ using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultMo
 using BinancePayConnector.Models.C2B.RestApi.Order.QueryRefund;
 using BinancePayConnector.Models.C2B.RestApi.Order.RefundOrder;
 using BinancePayConnector.Services.Interfaces;
-using BinancePayConnector.Services.Models.Order;
+using BinancePayConnector.Services.Models.Order.CreateOrder;
 
 namespace BinancePayConnector.Services;
 
@@ -30,34 +31,32 @@ public class BinancePayOrderService(
     {
         var orderExpireTimeMin = GetUnixTimestampAfterMinutes(details.OrderExpireTimeMin);
 
-        var createOrder = new CreateOrderRequest(
-            Env: identification.Env,
-            MerchantTradeNo: identification.MerchantTradeNo,
-            AppId: identification.AppId,
-            Description: details.Description,
-            OrderAmount: details.OrderAmount,
-            Currency: details.Currency,
-            OrderExpireTime: orderExpireTimeMin,
-            SupportPayCurrency: details.SupportPayCurrency,
-            GoodsDetails: goods,
-            ReturnUrl: urls?.ReturnUrl,
-            CancelUrl: urls?.CancelUrl,
-            WebhookUrl: urls?.WebhookUrl,
-            UniversalUrlAttach: urls?.UniversalUrlAttach,
-            PassThroughInfo: features?.PassThroughInfo,
-            DirectDebitContract: features?.DirectDebitContract,
-            OrderTags: features?.OrderTags,
-            VoucherCode: features?.VoucherCode,
-            Merchant: entities?.Merchant,
-            Shipping: entities?.Shipping,
-            Buyer: entities?.Buyer,
-            FiatAmount: null,
-            FiatCurrency: null);
-
         var response = await client.SendBinanceAsync<CreateOrderResult, CreateOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.CreateOrder,
-            content: createOrder,
+            content: new CreateOrderRequest(
+                Env: identification.Env,
+                MerchantTradeNo: identification.MerchantTradeNo,
+                AppId: identification.AppId,
+                Description: details.Description,
+                OrderAmount: details.OrderAmount,
+                Currency: details.Currency,
+                OrderExpireTime: orderExpireTimeMin,
+                SupportPayCurrency: ToBinanceCurrencyString(details.SupportPayCurrency),
+                GoodsDetails: goods,
+                ReturnUrl: urls?.ReturnUrl,
+                CancelUrl: urls?.CancelUrl,
+                WebhookUrl: urls?.WebhookUrl,
+                UniversalUrlAttach: urls?.UniversalUrlAttach,
+                PassThroughInfo: features?.PassThroughInfo,
+                DirectDebitContract: features?.DirectDebitContract,
+                OrderTags: features?.OrderTags,
+                VoucherCode: features?.VoucherCode,
+                Merchant: entities?.Merchant,
+                Shipping: entities?.Shipping,
+                Buyer: entities?.Buyer,
+                FiatAmount: null,
+                FiatCurrency: null),
             ct: ct);
 
         return response;
@@ -74,62 +73,58 @@ public class BinancePayOrderService(
     {
         var orderExpireTimeMin = GetUnixTimestampAfterMinutes(details.OrderExpireTimeMin);
 
-        var createOrder = new CreateOrderRequest(
-            Env: identification.Env,
-            MerchantTradeNo: identification.MerchantTradeNo,
-            AppId: identification.AppId,
-            Description: details.Description,
-            FiatAmount: details.FiatAmount,
-            FiatCurrency: details.FiatCurrency,
-            OrderExpireTime: orderExpireTimeMin,
-            SupportPayCurrency: details.SupportPayCurrency,
-            GoodsDetails: goods,
-            ReturnUrl: urls?.ReturnUrl,
-            CancelUrl: urls?.CancelUrl,
-            WebhookUrl: urls?.WebhookUrl,
-            UniversalUrlAttach: urls?.UniversalUrlAttach,
-            PassThroughInfo: features?.PassThroughInfo,
-            DirectDebitContract: features?.DirectDebitContract,
-            OrderTags: features?.OrderTags,
-            VoucherCode: features?.VoucherCode,
-            Merchant: entities?.Merchant,
-            Shipping: entities?.Shipping,
-            Buyer: entities?.Buyer,
-            OrderAmount: null,
-            Currency: null);
-
         var response = await client.SendBinanceAsync<CreateOrderResult, CreateOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.CreateOrder,
-            content: createOrder,
+            content: new CreateOrderRequest(
+                Env: identification.Env,
+                MerchantTradeNo: identification.MerchantTradeNo,
+                AppId: identification.AppId,
+                Description: details.Description,
+                FiatAmount: details.FiatAmount,
+                FiatCurrency: details.FiatCurrency,
+                OrderExpireTime: orderExpireTimeMin,
+                SupportPayCurrency: ToBinanceCurrencyString(details.SupportPayCurrency),
+                GoodsDetails: goods,
+                ReturnUrl: urls?.ReturnUrl,
+                CancelUrl: urls?.CancelUrl,
+                WebhookUrl: urls?.WebhookUrl,
+                UniversalUrlAttach: urls?.UniversalUrlAttach,
+                PassThroughInfo: features?.PassThroughInfo,
+                DirectDebitContract: features?.DirectDebitContract,
+                OrderTags: features?.OrderTags,
+                VoucherCode: features?.VoucherCode,
+                Merchant: entities?.Merchant,
+                Shipping: entities?.Shipping,
+                Buyer: entities?.Buyer,
+                OrderAmount: null,
+                Currency: null),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryOrderResult>> QueryOrderByPrepayId(
+    public async Task<BinancePayResult<QueryOrderResult>> GetOrderByPrepayId(
         string prepayId,
         CancellationToken ct = default)
     {
-        var queryOrder = new QueryOrderRequest(PrepayId: prepayId);
         var response = await client.SendBinanceAsync<QueryOrderResult, QueryOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.QueryOrder,
-            content: queryOrder,
+            content: new QueryOrderRequest(PrepayId: prepayId),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryOrderResult>> QueryOrderByMerchantTradeNo(
+    public async Task<BinancePayResult<QueryOrderResult>> GetOrderByMerchantTradeNo(
         string merchantTradeNo,
         CancellationToken ct = default)
     {
-        var queryOrder = new QueryOrderRequest(MerchantTradeNo: merchantTradeNo);
         var response = await client.SendBinanceAsync<QueryOrderResult, QueryOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.QueryOrder,
-            content: queryOrder,
+            content: new QueryOrderRequest(MerchantTradeNo: merchantTradeNo),
             ct: ct);
 
         return response;
@@ -139,11 +134,10 @@ public class BinancePayOrderService(
         string prepayId,
         CancellationToken ct = default)
     {
-        var closeOrder = new CloseOrderRequest(PrepayId: prepayId);
         var response = await client.SendBinanceAsync<bool?, CloseOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.CloseOrder,
-            content: closeOrder,
+            content: new CloseOrderRequest(PrepayId: prepayId),
             ct: ct);
 
         return response;
@@ -153,11 +147,10 @@ public class BinancePayOrderService(
         string merchantTradeNo,
         CancellationToken ct = default)
     {
-        var closeOrder = new CloseOrderRequest(MerchantTradeNo: merchantTradeNo);
         var response = await client.SendBinanceAsync<bool?, CloseOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.CloseOrder,
-            content: closeOrder,
+            content: new CloseOrderRequest(MerchantTradeNo: merchantTradeNo),
             ct: ct);
 
         return response;
@@ -171,41 +164,38 @@ public class BinancePayOrderService(
         string? webhookUrl = null,
         CancellationToken ct = default)
     {
-        var refundOrder = new RefundOrderRequest(refundRequestId, prepayId, refundAmount, refundReason, webhookUrl);
         var response = await client.SendBinanceAsync<RefundOrderResult, RefundOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.RefundOrder,
-            content: refundOrder,
+            content: new RefundOrderRequest(refundRequestId, prepayId, refundAmount, refundReason, webhookUrl),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryRefundResult>> QueryRefund(
+    public async Task<BinancePayResult<QueryRefundResult>> GetRefund(
         string refundRequestId,
         CancellationToken ct = default)
     {
-        var queryRefund = new QueryRefundRequest(refundRequestId);
         var response = await client.SendBinanceAsync<QueryRefundResult, QueryRefundRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.QueryRefund,
-            content: queryRefund,
+            content: new QueryRefundRequest(refundRequestId),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<bool?>> QueryPaymentPayerVerification(
+    public async Task<BinancePayResult<bool?>> GetPaymentPayerVerification(
         string binanceId,
         string payerType,
         List<Info>? information = null,
         CancellationToken ct = default)
     {
-        var paymentPayerVerification = new PaymentPayerVerificationRequest(binanceId, payerType, information);
         var response = await client.SendBinanceAsync<bool?, PaymentPayerVerificationRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.PaymentPayerVerification,
-            content: paymentPayerVerification,
+            content: new PaymentPayerVerificationRequest(binanceId, payerType, information),
             ct: ct);
 
         return response;
@@ -215,4 +205,9 @@ public class BinancePayOrderService(
         => minutes is null
             ? null
             : DateTimeOffset.UtcNow.AddMinutes(minutes.Value).ToUnixTimeMilliseconds();
+
+    private static string? ToBinanceCurrencyString(IEnumerable<AssetType>? assetTypes)
+        => assetTypes != null
+            ? string.Join(",", assetTypes.Select(a => a.ConvertToString()))
+            : null;
 }

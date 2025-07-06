@@ -5,7 +5,7 @@ using BinancePayConnector.Models.C2B.RestApi.Order.PaymentPayerVerification;
 using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultModel;
 using BinancePayConnector.Models.C2B.RestApi.Order.QueryRefund;
 using BinancePayConnector.Models.C2B.RestApi.Order.RefundOrder;
-using BinancePayConnector.Services.Models.Order;
+using BinancePayConnector.Services.Models.Order.CreateOrder;
 
 namespace BinancePayConnector.Services.Interfaces;
 
@@ -29,11 +29,11 @@ public interface IBinancePayOrderService
         OrderEntities? entities = null,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryOrderResult>> QueryOrderByPrepayId(
+    Task<BinancePayResult<QueryOrderResult>> GetOrderByPrepayId(
         string prepayId,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryOrderResult>> QueryOrderByMerchantTradeNo(
+    Task<BinancePayResult<QueryOrderResult>> GetOrderByMerchantTradeNo(
         string merchantTradeNo,
         CancellationToken ct = default);
 
@@ -53,11 +53,11 @@ public interface IBinancePayOrderService
         string? webhookUrl = null,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryRefundResult>> QueryRefund(
+    Task<BinancePayResult<QueryRefundResult>> GetRefund(
         string refundRequestId,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<bool?>> QueryPaymentPayerVerification(
+    Task<BinancePayResult<bool?>> GetPaymentPayerVerification(
         string binanceId,
         string payerType,
         List<Info>? information = null,

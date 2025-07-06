@@ -12,7 +12,7 @@ namespace BinancePayConnector;
 public class BinancePaySlim : IBinancePaySlim
 {
     private readonly IBinancePayClient _binancePayClient;
-    private readonly IBinancePayReceiver? _binancePayReceiver;
+    private readonly BinancePayReceiver? _binancePayReceiver;
     private readonly BinancePayWebhookConfig? _webhookConfig;
 
     public BinancePaySlim(

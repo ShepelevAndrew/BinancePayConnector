@@ -11,13 +11,15 @@ public class BinancePayShareInfoService(
 ) : IBinancePayShareInfoService
 {
     public async Task<BinancePayResult<ShareAccountIdResult>> ShareAccountId(
-        ShareAccountId request,
+        string requestId,
+        string? subMerchantId = null,
+        string? webhookUrl = null,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<ShareAccountIdResult, ShareAccountId>(
+        var response = await client.SendBinanceAsync<ShareAccountIdResult, ShareAccountIdRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.ShareInfo.ShareAccountId,
-            content: request,
+            content: new ShareAccountIdRequest(requestId, subMerchantId, webhookUrl),
             ct: ct);
 
         return response;

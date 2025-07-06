@@ -4,13 +4,13 @@ using BinancePayConnector.Clients;
 using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Config.Endpoints;
 using BinancePayConnector.Config.Options;
-using BinancePayConnector.Helpers;
+using BinancePayConnector.Domain;
 using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
-using BinancePayConnector.Services.Models.Order;
+using BinancePayConnector.Services.Models.Order.CreateOrder;
 
 namespace PerformanceMeasure;
 
@@ -28,7 +28,7 @@ public class BenchmarkTest
         var response = await binancePay.Order.CreateOrder(
             identification: new OrderIdentification(
                 new Env(TerminalType.App),
-                MerchantTradeNo: IdentifierFactory.CreateBinanceId32()
+                MerchantTradeNo: BinancePayId.Generate32().Value
             ),
             details: new OrderDetailsCrypto(
                 Description: "Description",
@@ -38,9 +38,9 @@ public class BenchmarkTest
             ),
             goods: [
                 new Goods(
-                    GoodsType.VirtualGoods,
-                    GoodsCategory.Others,
-                    IdentifierFactory.CreateBinanceId32(),
+                    GoodsType: GoodsType.VirtualGoods,
+                    GoodsCategory: GoodsCategory.Others,
+                    ReferenceGoodsId: BinancePayId.Generate32().Value,
                     GoodsName: "Name")
             ],
             urls: new OrderUrls(
@@ -91,7 +91,7 @@ public class BenchmarkTest
         var response = await binancePay.Order.CreateOrder(
             identification: new OrderIdentification(
                 new Env(TerminalType.App),
-                MerchantTradeNo: IdentifierFactory.CreateBinanceId32()
+                MerchantTradeNo: BinancePayId.Generate32().Value
             ),
             details: new OrderDetailsCrypto(
                 Description: "Description",
@@ -101,9 +101,9 @@ public class BenchmarkTest
             ),
             goods: [
                 new Goods(
-                    GoodsType.VirtualGoods,
-                    GoodsCategory.Others,
-                    IdentifierFactory.CreateBinanceId32(),
+                    GoodsType: GoodsType.VirtualGoods,
+                    GoodsCategory: GoodsCategory.Others,
+                    ReferenceGoodsId: BinancePayId.Generate32().Value,
                     GoodsName: "Name")
             ],
             urls: new OrderUrls(
@@ -138,7 +138,7 @@ public class BenchmarkTest
             Env: new Env(
                 TerminalType: TerminalType.App
             ),
-            MerchantTradeNo: IdentifierFactory.CreateBinanceId32(),
+            MerchantTradeNo: BinancePayId.Generate32().Value,
             OrderAmount: 0.001m,
             Currency: Assets.Usdt,
             Description: "Description",
@@ -147,7 +147,7 @@ public class BenchmarkTest
                 new Goods(
                     GoodsType: GoodsType.VirtualGoods,
                     GoodsCategory: GoodsCategory.Others,
-                    ReferenceGoodsId: IdentifierFactory.CreateBinanceId32(),
+                    ReferenceGoodsId: BinancePayId.Generate32().Value,
                     GoodsName: "Name"
                 )
             ],

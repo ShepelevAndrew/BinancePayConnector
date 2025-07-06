@@ -6,6 +6,7 @@ using BinancePayConnector.Models.C2B.RestApi.Convert.ListAllConvertPairs;
 using BinancePayConnector.Models.C2B.RestApi.Convert.QueryQuote;
 using BinancePayConnector.Models.C2B.RestApi.Convert.SendQuote;
 using BinancePayConnector.Services.Interfaces;
+using BinancePayConnector.Services.Models.Convert.SendQuote;
 
 namespace BinancePayConnector.Services;
 
@@ -17,11 +18,10 @@ public class BinancePayConvertService(
         string fromAsset,
         CancellationToken ct = default)
     {
-        var request = new ListAllConvertPairsRequest(fromAsset);
         var response = await client.SendBinanceAsync<ListAllConvertPairsResult, ListAllConvertPairsRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Convert.ListAllConvertPairs,
-            content: request,
+            content: new ListAllConvertPairsRequest(fromAsset),
             ct: ct);
 
         return response;
@@ -29,17 +29,18 @@ public class BinancePayConvertService(
 
     public async Task<BinancePayResult<SendQuoteResult>> SendQuote(
         string wallet,
-        string fromAsset,
-        string toAsset,
-        decimal? fromAmount,
-        decimal toAmount,
+        AssetConversion conversion,
         CancellationToken ct = default)
     {
-        var request = new SendQuoteRequest(wallet, fromAsset, toAsset, fromAmount, toAmount);
         var response = await client.SendBinanceAsync<SendQuoteResult, SendQuoteRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Convert.SendQuote,
-            content: request,
+            content: new SendQuoteRequest(
+                wallet,
+                conversion.FromAsset,
+                conversion.ToAsset,
+                conversion.FromAmount,
+                conversion.ToAmount),
             ct: ct);
 
         return response;
@@ -49,25 +50,23 @@ public class BinancePayConvertService(
         string quoteId,
         CancellationToken ct = default)
     {
-        var request = new ExecuteQuoteRequest(quoteId);
         var response = await client.SendBinanceAsync<ExecuteQuoteResult, ExecuteQuoteRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Convert.ExecuteQuote,
-            content: request,
+            content: new ExecuteQuoteRequest(quoteId),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryQuoteResult>> QueryQuote(
+    public async Task<BinancePayResult<QueryQuoteResult>> GetQuote(
         string orderId,
         CancellationToken ct = default)
     {
-        var request = new QueryQuoteRequest(orderId);
         var response = await client.SendBinanceAsync<QueryQuoteResult, QueryQuoteRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Convert.QueryQuote,
-            content: request,
+            content: new QueryQuoteRequest(orderId),
             ct: ct);
 
         return response;

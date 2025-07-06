@@ -13,39 +13,45 @@ public class BinancePayReportingService(
 ) : IBinancePayReportingService
 {
     public async Task<BinancePayResult<IEnumerable<DownloadReportResult>>> DownloadReport(
-        DownloadReport request,
+        string reportType,
+        string startDate,
+        string endDate,
+        string? transactionType = null,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<IEnumerable<DownloadReportResult>, DownloadReport>(
+        var response = await client.SendBinanceAsync<IEnumerable<DownloadReportResult>, DownloadReportRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Reporting.DownloadReport,
-            content: request,
+            content: new DownloadReportRequest(reportType, startDate, endDate, transactionType),
             ct: ct);
 
         return response;
     }
 
     public async Task<BinancePayResult<string?>> DownloadBalanceReport(
-        DownloadBalanceReport request,
+        string startDate,
+        string endDate,
+        string reportType = "Balance",
+        string? walletType = null,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<string?, DownloadBalanceReport>(
+        var response = await client.SendBinanceAsync<string?, DownloadBalanceReportRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Reporting.DownloadBalanceReport,
-            content: request,
+            content: new DownloadBalanceReportRequest(startDate, endDate, reportType, walletType),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryBalanceReportResult>> QueryBalanceReport(
-        QueryBalanceReport request,
+    public async Task<BinancePayResult<QueryBalanceReportResult>> GetBalanceReport(
+        string downloadId,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<QueryBalanceReportResult, QueryBalanceReport>(
+        var response = await client.SendBinanceAsync<QueryBalanceReportResult, QueryBalanceReportRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Reporting.QueryBalanceReport,
-            content: request,
+            content: new QueryBalanceReportRequest(downloadId),
             ct: ct);
 
         return response;

@@ -1,6 +1,4 @@
-﻿using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery.Enums;
-
-namespace BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery.ResultModel;
+﻿namespace BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery.ResultModel;
 
 /// <summary>
 /// You can see this in official documentation: <see href="https://developers.binance.com/docs/binance-pay/api-payout-query#transferqueryresult"/>.

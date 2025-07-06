@@ -1,11 +1,11 @@
 ﻿using BinancePayConnector;
-using BinancePayConnector.Helpers;
+using BinancePayConnector.Domain;
 using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
-using BinancePayConnector.Services.Models.Order;
+using BinancePayConnector.Services.Models.Order.CreateOrder;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinancePay.WebApi.Controllers;
@@ -24,7 +24,7 @@ public class OrderController(
         var response = await binancePay.Order.CreateOrder(
             identification: new OrderIdentification(
                 new Env(TerminalType.App),
-                MerchantTradeNo: IdentifierFactory.CreateBinanceId32()
+                MerchantTradeNo: BinancePayId.Generate32().Value
             ),
             details: new OrderDetailsCrypto(
                 Description: "Description",
@@ -34,17 +34,17 @@ public class OrderController(
             ),
             goods: [
                 new Goods(
-                    GoodsType.VirtualGoods,
-                    GoodsCategory.Others,
-                    IdentifierFactory.CreateBinanceId32(),
+                    GoodsType: GoodsType.VirtualGoods,
+                    GoodsCategory: GoodsCategory.Others,
+                    ReferenceGoodsId: BinancePayId.Generate32().Value,
                     GoodsName: "Name")
             ],
             urls: new OrderUrls(
                 WebhookUrl: "https://localhost:4142/api/binancepay/webhooks/order",
                 ReturnUrl: "https://test.com/return",
                 CancelUrl: "https://test.com/cancel"
-            )
-        );
+            ),
+            ct: ct);
 
         return response.IsSuccess
             ? Ok(response.Body)

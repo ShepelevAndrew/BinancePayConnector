@@ -9,17 +9,21 @@ namespace BinancePayConnector.Services.Interfaces;
 public interface IBinancePayTechnicalServiceProviderService
 {
     Task<BinancePayResult<CreateAuthorizationResult>> CreateAuthorizationRequest(
-        CreateAuthorizationRequest request,
+        string merchantId,
+        List<string> scopes,
+        List<string> ipWhitelist,
         CancellationToken ct = default);
 
     Task<BinancePayResult<GetRequestRecordResult>> GetRequestRecord(
-        GetRequestRecord request,
+        string merchantId,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryScopesResult>> QueryScopes(
+    Task<BinancePayResult<QueryScopesResult>> GetScopes(
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryAuthenticationRecordResult>> QueryAuthenticationRecord(
-        QueryAuthenticationRecord request,
+    Task<BinancePayResult<QueryAuthenticationRecordResult>> GetAuthenticationRecord(
+        int page,
+        int rows,
+        string? merchantId = null,
         CancellationToken ct = default);
 }

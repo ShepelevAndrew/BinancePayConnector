@@ -11,27 +11,30 @@ public class BinancePayTransferFundService(
     IBinancePayClient client
 ) : IBinancePayTransferFundService
 {
-    public async Task<BinancePayResult<TransferFundResult>> TransferFund(
-        TransferFund request,
+    public async Task<BinancePayResult<TransferFundResult>> FundTransfer(
+        string requestId,
+        string currency,
+        string amount,
+        string transferType,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<TransferFundResult, TransferFund>(
+        var response = await client.SendBinanceAsync<TransferFundResult, TransferFundRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.TransferFund.TransferFundUri,
-            content: request,
+            content: new TransferFundRequest(requestId, currency, amount, transferType),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryTransferResult>> QueryTransferResult(
-        QueryTransfer request,
+    public async Task<BinancePayResult<QueryTransferResult>> GetTransferResult(
+        string tranId,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<QueryTransferResult, QueryTransfer>(
+        var response = await client.SendBinanceAsync<QueryTransferResult, QueryTransferRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.TransferFund.QueryTransferResult,
-            content: request,
+            content: new QueryTransferRequest(tranId),
             ct: ct);
 
         return response;

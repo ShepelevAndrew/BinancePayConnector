@@ -91,8 +91,8 @@ public class BinancePayClient : IBinancePayClient
     private static HttpRequestMessage BuildRequestMessage(
         string path,
         HttpMethod method,
-        string? json = default,
-        Dictionary<string, string>? headers = default)
+        string? json = null,
+        Dictionary<string, string>? headers = null)
     {
         var requestMessage = new HttpRequestMessage
         {

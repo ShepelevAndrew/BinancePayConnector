@@ -4,20 +4,27 @@ using BinancePayConnector.Models.C2B.RestApi.DirectDebit.CreateContract;
 using BinancePayConnector.Models.C2B.RestApi.DirectDebit.Payment;
 using BinancePayConnector.Models.C2B.RestApi.DirectDebit.PaymentNotification;
 using BinancePayConnector.Models.C2B.RestApi.DirectDebit.QueryContract;
+using BinancePayConnector.Services.Models.DirectDebit;
+using BinancePayConnector.Services.Models.DirectDebit.ExecuteAuthorizedPayment;
 
 namespace BinancePayConnector.Services.Interfaces;
 
 public interface IBinancePayDirectDebitService
 {
     Task<BinancePayResult<CreateContractResult>> CreateContract(
-        CreateContractRequest request,
+        MerchantContractIdentification identification,
+        ScenarioConfig scenario,
+        MerchantInfo merchant,
+        PeriodicConfig? periodicSettings = null,
+        long? requestExpireTime = null,
+        long? contractEndTime = null,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryContractResult>> QueryContractByContractId(
+    Task<BinancePayResult<QueryContractResult>> GetContractByContractId(
         long contractId,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryContractResult>> QueryContractByMerchantContractCode(
+    Task<BinancePayResult<QueryContractResult>> GetContractByMerchantContractCode(
         string merchantContractCode,
         CancellationToken ct = default);
 
@@ -32,7 +39,7 @@ public interface IBinancePayDirectDebitService
         CancellationToken ct = default);
 
 
-    Task<BinancePayResult<PaymentNotificationResult>> PaymentNotify(
+    Task<BinancePayResult<PaymentNotificationResult>> NotifyPayment(
         string merchantRequestId,
         long bizId,
         decimal estimatedAmount,
@@ -40,7 +47,10 @@ public interface IBinancePayDirectDebitService
         string currency = Assets.Usdt,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<PaymentResult>> AuthorizationPay(
-        PaymentRequest request,
+    Task<BinancePayResult<PaymentResult>> ExecuteAuthorizedPayment(
+        PaymentIdentification identification,
+        PaymentOrder order,
+        PaymentProduct product,
+        PaymentOptionalMeta? meta = null,
         CancellationToken ct = default);
 }

@@ -14,32 +14,34 @@ public class BinancePayTechnicalServiceProviderService(
 ) : IBinancePayTechnicalServiceProviderService
 {
     public async Task<BinancePayResult<CreateAuthorizationResult>> CreateAuthorizationRequest(
-        CreateAuthorizationRequest request,
+        string merchantId,
+        List<string> scopes,
+        List<string> ipWhitelist,
         CancellationToken ct = default)
     {
         var response = await client.SendBinanceAsync<CreateAuthorizationResult, CreateAuthorizationRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.TechnicalServiceProvider.CreateAuthorizeRequest,
-            content: request,
+            content: new CreateAuthorizationRequest(merchantId, scopes, ipWhitelist),
             ct: ct);
 
         return response;
     }
 
     public async Task<BinancePayResult<GetRequestRecordResult>> GetRequestRecord(
-        GetRequestRecord request,
+        string merchantId,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<GetRequestRecordResult, GetRequestRecord>(
+        var response = await client.SendBinanceAsync<GetRequestRecordResult, GetRequestRecordRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.TechnicalServiceProvider.GetRequestRecord,
-            content: request,
+            content: new GetRequestRecordRequest(merchantId),
             ct: ct);
 
         return response;
     }
 
-    public async Task<BinancePayResult<QueryScopesResult>> QueryScopes(
+    public async Task<BinancePayResult<QueryScopesResult>> GetScopes(
         CancellationToken ct = default)
     {
         var response = await client.SendBinanceAsync<QueryScopesResult>(
@@ -50,13 +52,16 @@ public class BinancePayTechnicalServiceProviderService(
         return response;
     }
 
-    public async Task<BinancePayResult<QueryAuthenticationRecordResult>> QueryAuthenticationRecord(
-        QueryAuthenticationRecord request,
+    public async Task<BinancePayResult<QueryAuthenticationRecordResult>> GetAuthenticationRecord(
+        int page,
+        int rows,
+        string? merchantId = null,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<QueryAuthenticationRecordResult, QueryAuthenticationRecord>(
+        var response = await client.SendBinanceAsync<QueryAuthenticationRecordResult, QueryAuthenticationRecordRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.TechnicalServiceProvider.QueryAuthenticationRecord,
+            content: new QueryAuthenticationRecordRequest(page, rows, merchantId),
             ct: ct);
 
         return response;

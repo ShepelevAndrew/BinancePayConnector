@@ -11,14 +11,15 @@ public class BinancePayWalletBalanceService(
     IBinancePayClient client
 ) : IBinancePayWalletBalanceService
 {
-    public async Task<BinancePayResult<WalletBalanceQueryResult>> WalletBalanceQuery(
-        WalletBalanceQuery request,
+    public async Task<BinancePayResult<WalletBalanceQueryResult>> GetWalletBalance(
+        string wallet,
+        string? currency = null,
         CancellationToken ct = default)
     {
-        var response = await client.SendBinanceAsync<WalletBalanceQueryResult, WalletBalanceQuery>(
+        var response = await client.SendBinanceAsync<WalletBalanceQueryResult, WalletBalanceQueryRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.WalletBalance.WalletBalanceQuery,
-            content: request,
+            content: new WalletBalanceQueryRequest(wallet, currency),
             ct: ct);
 
         return response;

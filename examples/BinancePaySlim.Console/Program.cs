@@ -1,7 +1,7 @@
 ﻿using BinancePayConnector;
 using BinancePayConnector.Clients.Models.Result;
 using BinancePayConnector.Config.Options;
-using BinancePayConnector.Helpers;
+using BinancePayConnector.Domain;
 using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
@@ -75,7 +75,7 @@ CreateOrderRequest CreateOrder()
         new Env(
             TerminalType: TerminalType.App
         ),
-        MerchantTradeNo: IdentifierFactory.CreateBinanceId32(),
+        MerchantTradeNo: BinancePayId.Generate32().Value,
         OrderAmount: 0.001m,
         Currency: Assets.Usdt,
         Description: "Description",
@@ -84,7 +84,7 @@ CreateOrderRequest CreateOrder()
             new Goods(
                 GoodsType: GoodsType.VirtualGoods,
                 GoodsCategory: GoodsCategory.Others,
-                ReferenceGoodsId: IdentifierFactory.CreateBinanceId32(),
+                ReferenceGoodsId: BinancePayId.Generate32().Value,
                 GoodsName: "Name"
             )
         ],

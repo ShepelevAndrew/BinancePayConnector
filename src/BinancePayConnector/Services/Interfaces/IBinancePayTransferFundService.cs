@@ -6,11 +6,14 @@ namespace BinancePayConnector.Services.Interfaces;
 
 public interface IBinancePayTransferFundService
 {
-    Task<BinancePayResult<TransferFundResult>> TransferFund(
-        TransferFund request,
+    Task<BinancePayResult<TransferFundResult>> FundTransfer(
+        string requestId,
+        string currency,
+        string amount,
+        string transferType,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryTransferResult>> QueryTransferResult(
-        QueryTransfer request,
+    Task<BinancePayResult<QueryTransferResult>> GetTransferResult(
+        string tranId,
         CancellationToken ct = default);
 }

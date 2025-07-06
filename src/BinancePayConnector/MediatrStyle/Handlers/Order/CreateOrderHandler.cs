@@ -7,7 +7,7 @@ using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
 
 namespace BinancePayConnector.MediatrStyle.Handlers.Order;
 
-public class CreateOrderHandler(
+public sealed class CreateOrderHandler(
     IBinancePayClient client
 ) : IRequestHandler<CreateOrderRequest, CreateOrderResult>
 {

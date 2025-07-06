@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <Folder Include="Clients\Models\" />
+      <Folder Include="Services\Models\SubMerchant\Modify\" />
     </ItemGroup>
 
 </Project>

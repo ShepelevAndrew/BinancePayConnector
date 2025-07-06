@@ -3,6 +3,7 @@ using BinancePayConnector.Models.C2B.RestApi.Convert.ExecuteQuote;
 using BinancePayConnector.Models.C2B.RestApi.Convert.ListAllConvertPairs;
 using BinancePayConnector.Models.C2B.RestApi.Convert.QueryQuote;
 using BinancePayConnector.Models.C2B.RestApi.Convert.SendQuote;
+using BinancePayConnector.Services.Models.Convert.SendQuote;
 
 namespace BinancePayConnector.Services.Interfaces;
 
@@ -14,17 +15,14 @@ public interface IBinancePayConvertService
 
     Task<BinancePayResult<SendQuoteResult>> SendQuote(
         string wallet,
-        string fromAsset,
-        string toAsset,
-        decimal? fromAmount,
-        decimal toAmount,
+        AssetConversion conversion,
         CancellationToken ct = default);
 
     Task<BinancePayResult<ExecuteQuoteResult>> ExecuteQuote(
         string quoteId,
         CancellationToken ct = default);
 
-    Task<BinancePayResult<QueryQuoteResult>> QueryQuote(
+    Task<BinancePayResult<QueryQuoteResult>> GetQuote(
         string orderId,
         CancellationToken ct = default);
 }

@@ -1,11 +1,11 @@
 ﻿using BinancePayConnector;
 using BinancePayConnector.Config.Options;
-using BinancePayConnector.Helpers;
+using BinancePayConnector.Domain;
 using BinancePayConnector.Models.C2B.Common.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
 using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
-using BinancePayConnector.Services.Models.Order;
+using BinancePayConnector.Services.Models.Order.CreateOrder;
 
 const string apiKey = "xz4t6ccz71826dprluewhkyc8of39iypbykadjx8qljfuy293nfsojtsid5zofwh";
 const string apiSecret = "ishrrq2x8anvwh8yphuxbpivwacb32btk3xsmk6agtxtuvlur1hbydo63zo7bect";
@@ -21,7 +21,7 @@ var binancePay = new BinancePay(apiKey, apiSecret)
 var response = await binancePay.Order.CreateOrder(
     identification: new OrderIdentification(
         new Env(TerminalType.App),
-        MerchantTradeNo: IdentifierFactory.CreateBinanceId32()
+        MerchantTradeNo: BinancePayId.Generate32().Value
     ),
     details: new OrderDetailsCrypto(
         Description: "Description",
@@ -33,7 +33,7 @@ var response = await binancePay.Order.CreateOrder(
         new Goods(
             GoodsType.VirtualGoods,
             GoodsCategory.Others,
-            IdentifierFactory.CreateBinanceId32(),
+            ReferenceGoodsId: BinancePayId.Generate32().Value,
             GoodsName: "Name")
     ],
     urls: new OrderUrls(
@@ -52,7 +52,7 @@ if (response.IsFailure || response.Body is null)
     return;
 }
 
-var order = await binancePay.Order.QueryOrderByPrepayId(response.Body.PrepayId);
+var order = await binancePay.Order.GetOrderByPrepayId(response.Body.PrepayId);
 
 Console.WriteLine("Status: " + order.Body?.Status);
 Console.WriteLine("PrepayId: " + response.Body.PrepayId);

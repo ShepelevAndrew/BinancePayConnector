@@ -6,6 +6,8 @@ namespace BinancePayConnector.Services.Interfaces;
 public interface IBinancePayShareInfoService
 {
     Task<BinancePayResult<ShareAccountIdResult>> ShareAccountId(
-        ShareAccountId request,
+        string requestId,
+        string? subMerchantId = null,
+        string? webhookUrl = null,
         CancellationToken ct = default);
 }

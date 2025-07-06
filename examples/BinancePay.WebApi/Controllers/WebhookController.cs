@@ -22,7 +22,7 @@ public class WebhookController(IBinancePay binancePay) : ControllerBase
         {
             var orderNotification = JsonConvert.DeserializeObject<OrderNotification>(webhook.Data);
 
-            var order = await binancePay.Order.QueryOrderByPrepayId(
+            var order = await binancePay.Order.GetOrderByPrepayId(
                 prepayId: webhook.BizIdStr,
                 ct: ct);
         }

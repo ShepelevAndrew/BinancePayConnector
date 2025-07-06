@@ -50,7 +50,8 @@ internal static class ReflectionHelper
     /// <returns>Returns method info for handler executing.</returns>
     public static MethodInfo GetHandlerExecuteMethod<TResponse>(IRequest<TResponse> request)
     {
-        var methodName = nameof(IRequestHandler<IRequest<TResponse>, TResponse>.ExecuteAsync);
+        const string methodName = nameof(IRequestHandler<IRequest<TResponse>, TResponse>.ExecuteAsync);
+
         var interfaceType = typeof(IRequestHandler<,>);
         var specificInterfaceType = interfaceType.MakeGenericType(request.GetType(), typeof(TResponse));
 
