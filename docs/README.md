@@ -95,7 +95,7 @@ builder.Services.AddBinancePay("your-api-key", "your-api-secret");
 
 Then inject IBinancePay anywhere:
 
-```
+```csharp
 public class OrderController(IBinancePay binancePay) : ControllerBase
 {
     public async Task<IActionResult> CreateOrder()
