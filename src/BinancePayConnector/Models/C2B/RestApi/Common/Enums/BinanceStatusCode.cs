@@ -5,7 +5,8 @@
 /// </summary>
 public enum BinanceStatusCode
 {
-    RequestError = 0, // Not binance status code, only for mark request error
+    Success = 0,
+    RequestError = 1, // Not binance status code, only for mark request error
     UnknownError = 400000,
     InvalidRequest = 400001,
     InvalidSignature = 400002,

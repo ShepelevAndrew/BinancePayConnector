@@ -17,8 +17,8 @@ namespace PerformanceMeasure;
 [MemoryDiagnoser]
 public class BenchmarkTest
 {
-    private const string ApiKey = "xz4t6ccz71826dprluewhkyc8of39iypbykadjx8qljfuy293nfsojtsid5zofwh";
-    private const string ApiSecret = "ishrrq2x8anvwh8yphuxbpivwacb32btk3xsmk6agtxtuvlur1hbydo63zo7bect";
+    private const string ApiKey = "api-key";
+    private const string ApiSecret = "api-secret";
 
     [Benchmark]
     public async Task<BinancePayResult<CreateOrderResult>> BinancePay_CreateOrder()

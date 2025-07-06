@@ -5,7 +5,8 @@
 /// </summary>
 public static class BinanceStatusCodeConst
 {
-    public const string RequestError = "0"; // Not binance status code, only for mark request error
+    public const string RequestError = "1"; // Not binance status code, only for mark request error
+    public const string Success = "000000";
     public const string UnknownError = "400000";
     public const string InvalidRequest = "400001";
     public const string InvalidSignature = "400002";
@@ -26,6 +27,7 @@ public static class BinanceStatusCodeConst
 
     public static readonly Dictionary<string, int> MapToWeb = new()
     {
+        { Success, 200 },
         { RequestError, 500 },
         { UnknownError, 500 },
         { InvalidRequest, 400 },

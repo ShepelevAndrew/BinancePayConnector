@@ -1,7 +1,7 @@
 using BinancePayConnector;
 
-const string apiKey = "xz4t6ccz71826dprluewhkyc8of39iypbykadjx8qljfuy293nfsojtsid5zofwh";
-const string apiSecret = "ishrrq2x8anvwh8yphuxbpivwacb32btk3xsmk6agtxtuvlur1hbydo63zo7bect";
+const string apiKey = "api-key";
+const string apiSecret = "api-secret";
 
 var builder = WebApplication.CreateBuilder(args);
 {
