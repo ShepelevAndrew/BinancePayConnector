@@ -221,3 +221,27 @@ PRs are welcome! Please open an issue first to discuss major changes.
 ## 📚 References
 - [Official Binance Pay API Docs](https://developers.binance.com/docs/binance-pay)
 - [Binance Developer Center](https://developers.binance.com)
+
+---
+
+## 📌 TODO:
+
+### 1. Split into separate projects for better separation of concerns:
+- `BinancePayConnector.Core` – shared models, enums, value types, helpers
+- `BinancePayConnector` – typed service-oriented API
+- `BinancePayConnector.Slim` – lightweight `Send<T>`-based variant
+
+### 2. Replace raw primitives in response types with rich value objects:
+I think do it by base virtual methods like "MapTo" in Result models for mapping to typed model
+- `string PrepayId` → `BinancePayId PrepayId`
+- `string QrCodeLink` → `Uri QrCodeLink`
+- etc.
+
+### 3. Enhance request models with strongly typed wrappers:
+- `string Id` → `BinancePayId Id`
+- `long UnixTimestamp` → `DateTime Time`
+- etc.
+
+### 4. Write end to end tests for requests
+
+---
