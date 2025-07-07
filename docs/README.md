@@ -6,8 +6,8 @@
 
 ---
 
-[!IMPORTANT]
-This project is not affiliated with or endorsed by Binance.
+> [!IMPORTANT]
+> This project is not affiliated with or endorsed by Binance.
 
 ---
 
