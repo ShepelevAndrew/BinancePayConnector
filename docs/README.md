@@ -244,4 +244,6 @@ I think do it by base virtual methods like "MapTo" in Result models for mapping 
 
 ### 4. Write end to end tests for requests
 
+### 5. Add xml documentation to all methods and classes
+
 ---
