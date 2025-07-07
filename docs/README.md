@@ -7,7 +7,7 @@
 ---
 
 [!IMPORTANT]
-### This project is not affiliated with or endorsed by Binance.
+This project is not affiliated with or endorsed by Binance.
 
 ---
 
