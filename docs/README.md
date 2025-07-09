@@ -246,4 +246,6 @@ I think do it by base virtual methods like "MapTo" in Result models for mapping 
 
 ### 5. Add xml documentation to all methods and classes
 
+### 6. Do auto chossing server depense on ping response
+
 ---
