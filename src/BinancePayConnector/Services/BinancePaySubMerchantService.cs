@@ -1,11 +1,11 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Models.C2B.RestApi.SubMerchant.Common;
-using BinancePayConnector.Models.C2B.RestApi.SubMerchant.CreateSubMerchant;
-using BinancePayConnector.Models.C2B.RestApi.SubMerchant.ModifySubMerchant;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Models.C2B.RestApi.SubMerchant.Common;
+using BinancePayConnector.Core.Models.C2B.RestApi.SubMerchant.CreateSubMerchant;
+using BinancePayConnector.Core.Models.C2B.RestApi.SubMerchant.ModifySubMerchant;
 using BinancePayConnector.Services.Interfaces;
-using BinancePayConnector.Services.Models.SubMerchant.Create;
+using BinancePayConnector.Models.SubMerchant.Create;
 
 namespace BinancePayConnector.Services;
 

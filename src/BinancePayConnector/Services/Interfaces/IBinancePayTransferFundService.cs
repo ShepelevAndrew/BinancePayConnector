@@ -1,6 +1,6 @@
-﻿using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Models.C2B.RestApi.TransferFund.QueryTransfer;
-using BinancePayConnector.Models.C2B.RestApi.TransferFund.TransferFund;
+﻿using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Models.C2B.RestApi.TransferFund.QueryTransfer;
+using BinancePayConnector.Core.Models.C2B.RestApi.TransferFund.TransferFund;
 
 namespace BinancePayConnector.Services.Interfaces;
 

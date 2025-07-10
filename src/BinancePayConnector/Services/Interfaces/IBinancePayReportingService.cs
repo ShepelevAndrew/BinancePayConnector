@@ -1,6 +1,6 @@
-﻿using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Models.C2B.RestApi.Reporting.DownloadReport;
-using BinancePayConnector.Models.C2B.RestApi.Reporting.QueryBalanceReport;
+﻿using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Models.C2B.RestApi.Reporting.DownloadReport;
+using BinancePayConnector.Core.Models.C2B.RestApi.Reporting.QueryBalanceReport;
 
 namespace BinancePayConnector.Services.Interfaces;
 

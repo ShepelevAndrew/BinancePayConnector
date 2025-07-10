@@ -1,10 +1,10 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.CreateAuthorizationRequest;
-using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.GetRequestRecord;
-using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.QueryAuthenticationRecord;
-using BinancePayConnector.Models.C2B.RestApi.TechnicalServiceProvider.QueryScopes;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Models.C2B.RestApi.TechnicalServiceProvider.CreateAuthorizationRequest;
+using BinancePayConnector.Core.Models.C2B.RestApi.TechnicalServiceProvider.GetRequestRecord;
+using BinancePayConnector.Core.Models.C2B.RestApi.TechnicalServiceProvider.QueryAuthenticationRecord;
+using BinancePayConnector.Core.Models.C2B.RestApi.TechnicalServiceProvider.QueryScopes;
 using BinancePayConnector.Services.Interfaces;
 
 namespace BinancePayConnector.Services;

@@ -1,8 +1,8 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Models.C2B.RestApi.TransferFund.QueryTransfer;
-using BinancePayConnector.Models.C2B.RestApi.TransferFund.TransferFund;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Models.C2B.RestApi.TransferFund.QueryTransfer;
+using BinancePayConnector.Core.Models.C2B.RestApi.TransferFund.TransferFund;
 using BinancePayConnector.Services.Interfaces;
 
 namespace BinancePayConnector.Services;

@@ -1,11 +1,11 @@
-﻿using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.PaymentPayerVerification;
-using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.QueryRefund;
-using BinancePayConnector.Models.C2B.RestApi.Order.RefundOrder;
-using BinancePayConnector.Services.Models.Order.CreateOrder;
+﻿using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.PaymentPayerVerification;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.QueryRefund;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.RefundOrder;
+using BinancePayConnector.Models.Order.CreateOrder;
 
 namespace BinancePayConnector.Services.Interfaces;
 

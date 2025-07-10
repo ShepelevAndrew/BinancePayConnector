@@ -1,13 +1,13 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Models.C2B.RestApi.Payout.BatchPayout;
-using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery;
-using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutQuery.ResultModel;
-using BinancePayConnector.Models.C2B.RestApi.Payout.PayoutValidateReceiver;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Models.C2B.RestApi.Payout.BatchPayout;
+using BinancePayConnector.Core.Models.C2B.RestApi.Payout.PayoutQuery;
+using BinancePayConnector.Core.Models.C2B.RestApi.Payout.PayoutQuery.ResultModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Payout.PayoutValidateReceiver;
 using BinancePayConnector.Services.Interfaces;
-using BinancePayConnector.Services.Models.Payout.ExecuteBatchPayout;
-using BinancePayConnector.Services.Models.Payout.ValidatePayoutReceiver;
+using BinancePayConnector.Models.Payout.ExecuteBatchPayout;
+using BinancePayConnector.Models.Payout.ValidatePayoutReceiver;
 
 namespace BinancePayConnector.Services;
 

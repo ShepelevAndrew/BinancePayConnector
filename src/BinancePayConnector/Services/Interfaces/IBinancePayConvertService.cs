@@ -1,9 +1,9 @@
-﻿using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Models.C2B.RestApi.Convert.ExecuteQuote;
-using BinancePayConnector.Models.C2B.RestApi.Convert.ListAllConvertPairs;
-using BinancePayConnector.Models.C2B.RestApi.Convert.QueryQuote;
-using BinancePayConnector.Models.C2B.RestApi.Convert.SendQuote;
-using BinancePayConnector.Services.Models.Convert.SendQuote;
+﻿using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Models.C2B.RestApi.Convert.ExecuteQuote;
+using BinancePayConnector.Core.Models.C2B.RestApi.Convert.ListAllConvertPairs;
+using BinancePayConnector.Core.Models.C2B.RestApi.Convert.QueryQuote;
+using BinancePayConnector.Core.Models.C2B.RestApi.Convert.SendQuote;
+using BinancePayConnector.Models.Convert.SendQuote;
 
 namespace BinancePayConnector.Services.Interfaces;
 

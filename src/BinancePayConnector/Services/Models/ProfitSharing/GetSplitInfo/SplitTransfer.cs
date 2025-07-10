@@ -1,6 +1,0 @@
-namespace BinancePayConnector.Services.Models.ProfitSharing.GetSplitInfo;
-
-public sealed record SplitTransfer(
-    string TransferOutAccount,
-    decimal ReturnAmount
-);

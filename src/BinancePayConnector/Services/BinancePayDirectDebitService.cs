@@ -1,15 +1,15 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.RestApi.DirectDebit.CreateContract;
-using BinancePayConnector.Models.C2B.RestApi.DirectDebit.Payment;
-using BinancePayConnector.Models.C2B.RestApi.DirectDebit.PaymentNotification;
-using BinancePayConnector.Models.C2B.RestApi.DirectDebit.QueryContract;
-using BinancePayConnector.Models.C2B.RestApi.DirectDebit.TerminateContract;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.DirectDebit.CreateContract;
+using BinancePayConnector.Core.Models.C2B.RestApi.DirectDebit.Payment;
+using BinancePayConnector.Core.Models.C2B.RestApi.DirectDebit.PaymentNotification;
+using BinancePayConnector.Core.Models.C2B.RestApi.DirectDebit.QueryContract;
+using BinancePayConnector.Core.Models.C2B.RestApi.DirectDebit.TerminateContract;
 using BinancePayConnector.Services.Interfaces;
-using BinancePayConnector.Services.Models.DirectDebit;
-using BinancePayConnector.Services.Models.DirectDebit.ExecuteAuthorizedPayment;
+using BinancePayConnector.Models.DirectDebit.CreateContract;
+using BinancePayConnector.Models.DirectDebit.ExecuteAuthorizedPayment;
 
 namespace BinancePayConnector.Services;
 
