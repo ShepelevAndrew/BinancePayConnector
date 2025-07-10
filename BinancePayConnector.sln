@@ -26,9 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{5191A565-5013-43C9-B615-2B9A614ED350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePayConnector.Core", "BinancePayConnector.Core\BinancePayConnector.Core.csproj", "{67B629AB-C06C-4A15-9E49-DE3451A461B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePayConnector.Core", "src\BinancePayConnector.Core\BinancePayConnector.Core.csproj", "{67B629AB-C06C-4A15-9E49-DE3451A461B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePayConnectorSlim", "BinancePayConnectorSlim\BinancePayConnectorSlim.csproj", "{9C6FB47D-F14E-4078-8D14-3F407BE65A60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinancePayConnectorSlim", "src\BinancePayConnectorSlim\BinancePayConnectorSlim.csproj", "{9C6FB47D-F14E-4078-8D14-3F407BE65A60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
