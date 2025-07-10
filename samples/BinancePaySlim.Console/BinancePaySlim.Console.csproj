@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BinancePayConnectorSlim\BinancePayConnectorSlim.csproj" />
+      <ProjectReference Include="..\..\src\BinancePayConnectorSlim\BinancePayConnectorSlim.csproj" />
       <ProjectReference Include="..\..\src\BinancePayConnector\BinancePayConnector.csproj" />
     </ItemGroup>
 

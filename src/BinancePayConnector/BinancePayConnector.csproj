@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\BinancePayConnector.Core\BinancePayConnector.Core.csproj" />
+        <ProjectReference Include="..\BinancePayConnector.Core\BinancePayConnector.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
