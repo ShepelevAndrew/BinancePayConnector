@@ -1,10 +1,10 @@
 ﻿using System.Net;
-using BinancePayConnector.Clients.WebHookListener.Helpers;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Common;
+using BinancePayConnector.Core.Clients.WebHookListener.Helpers;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
 
-namespace BinancePayConnector.Clients.WebHookListener;
+namespace BinancePayConnector.Core.Clients.WebHookListener;
 
 public class BinancePayReceiver : IBinancePayReceiver
 {

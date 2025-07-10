@@ -1,7 +1,7 @@
-﻿using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Common;
+﻿using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
 
-namespace BinancePayConnector.Clients.WebHookListener;
+namespace BinancePayConnector.Core.Clients.WebHookListener;
 
 public interface IBinancePayReceiver
 {

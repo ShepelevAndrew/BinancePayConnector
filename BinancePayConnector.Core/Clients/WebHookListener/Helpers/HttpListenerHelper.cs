@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Text;
-using BinancePayConnector.Clients.JsonSerialization.Resolvers;
-using BinancePayConnector.Models.C2B.Webhook.Common;
+using BinancePayConnector.Core.Clients.JsonSerialization.Resolvers;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
 using Newtonsoft.Json;
 
-namespace BinancePayConnector.Clients.WebHookListener.Helpers;
+namespace BinancePayConnector.Core.Clients.WebHookListener.Helpers;
 
 public static class HttpListenerHelper
 {
