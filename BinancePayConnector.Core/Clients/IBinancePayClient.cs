@@ -1,6 +1,6 @@
-﻿using BinancePayConnector.Clients.Models.Result;
+﻿using BinancePayConnector.Core.Clients.Models;
 
-namespace BinancePayConnector.Clients;
+namespace BinancePayConnector.Core.Clients;
 
 public interface IBinancePayClient
 {
