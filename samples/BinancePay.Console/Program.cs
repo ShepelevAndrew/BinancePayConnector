@@ -1,11 +1,11 @@
 ﻿using BinancePayConnector;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Domain;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
-using BinancePayConnector.Services.Models.Order.CreateOrder;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Domain;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
+using BinancePayConnector.Models.Order.CreateOrder;
 
 const string apiKey = "api-key";
 const string apiSecret = "api-secret";

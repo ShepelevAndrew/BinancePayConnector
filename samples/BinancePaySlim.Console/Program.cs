@@ -1,18 +1,18 @@
-﻿using BinancePayConnector;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Domain;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder;
-using BinancePayConnector.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultModel;
-using BinancePayConnector.Models.C2B.Webhook.BalanceReport;
-using BinancePayConnector.Models.C2B.Webhook.Common;
-using BinancePayConnector.Models.C2B.Webhook.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Order;
+﻿using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Domain;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.QueryOrder;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.QueryOrder.QueryOrderResultModel;
+using BinancePayConnector.Core.Models.C2B.Webhook.BalanceReport;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Order;
+using BinancePayConnectorSlim;
 using Newtonsoft.Json;
 
 const string apiKey = "api-key";
@@ -72,7 +72,7 @@ return;
 
 CreateOrderRequest CreateOrder()
     => new(
-        new Env(
+        Env: new Env(
             TerminalType: TerminalType.App
         ),
         MerchantTradeNo: BinancePayId.Generate32().Value,

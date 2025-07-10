@@ -1,8 +1,8 @@
 ﻿using BinancePayConnector;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Common;
-using BinancePayConnector.Models.C2B.Webhook.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Order;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Order;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

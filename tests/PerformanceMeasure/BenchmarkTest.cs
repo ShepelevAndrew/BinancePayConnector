@@ -1,16 +1,18 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BinancePayConnector;
-using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Domain;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
-using BinancePayConnector.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
-using BinancePayConnector.Services.Models.Order.CreateOrder;
+using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Domain;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.Enums;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.GoodsModel;
+using BinancePayConnector.Core.Models.C2B.RestApi.Order.CreateOrder.ResultModel;
+using BinancePayConnector.Models.Order.CreateOrder;
+
+using BinancePayConnectorSlim;
 
 namespace PerformanceMeasure;
 
@@ -59,7 +61,7 @@ public class BenchmarkTest
         var binancePaySlim = new BinancePaySlim(ApiKey, ApiSecret);
 
         var response = await binancePaySlim.Send(
-            request: GetCreateOrderCommand());
+            request: GetCreateOrderRequest());
 
         return response;
     }
@@ -72,7 +74,7 @@ public class BenchmarkTest
         var response = await binancePayClient.SendBinanceAsync<CreateOrderResult, CreateOrderRequest>(
             method: HttpMethod.Post,
             path: BinancePayEndpoints.Order.CreateOrder,
-            content: GetCreateOrderCommand());
+            content: GetCreateOrderRequest());
 
         return response;
     }
@@ -128,12 +130,12 @@ public class BenchmarkTest
         };
 
         var response = await binancePaySlim.Send(
-            request: GetCreateOrderCommand());
+            request: GetCreateOrderRequest());
 
         return response;
     }
 
-    private static CreateOrderRequest GetCreateOrderCommand()
+    private static CreateOrderRequest GetCreateOrderRequest()
         => new(
             Env: new Env(
                 TerminalType: TerminalType.App
