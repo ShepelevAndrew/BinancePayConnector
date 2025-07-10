@@ -1,17 +1,16 @@
-﻿using System.Text;
-using BinancePayConnector.Clients.Exceptions;
-using BinancePayConnector.Clients.Extensions;
-using BinancePayConnector.Clients.JsonSerialization.Resolvers;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Config.Endpoints;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.RestApi.Common;
-using BinancePayConnector.Models.C2B.RestApi.Common.Enums;
+﻿using System.Net;
+using System.Text;
+using BinancePayConnector.Core.Clients.Extensions;
+using BinancePayConnector.Core.Clients.Exceptions;
+using BinancePayConnector.Core.Clients.JsonSerialization.Resolvers;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Config.Endpoints;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Models.C2B.RestApi.Common;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace BinancePayConnector.Clients;
+namespace BinancePayConnector.Core.Clients;
 
 public class BinancePayClient : IBinancePayClient
 {
@@ -52,16 +51,16 @@ public class BinancePayClient : IBinancePayClient
 
         // TODO: Think about optimize http client with some settings.
         using var client = new HttpClient();
+
         var response = await client.SendAsync(requestMessage, ct);
+        var responseData = await response.Content.ReadAsStringAsync(ct);
 
         if (!response.IsSuccessStatusCode)
         {
-            return await DeserializeBadResponse<TResponse>(response);
+            return DeserializeBadResponse<TResponse>(responseData, response.StatusCode);
         }
 
-        var responseData = await response.Content.ReadAsStringAsync(ct);
         var result = DeserializeJsonToObject<WebApiResult<TResponse>>(responseData);
-
         return result.AsBinancePayResult();
     }
 
@@ -126,28 +125,18 @@ public class BinancePayClient : IBinancePayClient
         return new StringContent(json, Encoding.UTF8, httpMediaType);
     }
 
-    private static async Task<BinancePayResult<TResponse>> DeserializeBadResponse<TResponse>(HttpResponseMessage response)
+    private static BinancePayResult<TResponse> DeserializeBadResponse<TResponse>(
+        string responseData,
+        HttpStatusCode statusCode)
     {
-        var responseData = await response.Content.ReadAsStringAsync();
         try
         {
             var result = DeserializeJsonToObject<WebApiResult<object>>(responseData);
-
-            return new BinancePayResult<TResponse>(
-                errorMessage: result.ErrorMessage,
-                statusCode: response.StatusCode,
-                binanceStatusCode: result.Status,
-                requestStatus: RequestStatus.Fail,
-                body: default);
+            return result.AsBinancePayResult<TResponse>(statusCode);
         }
         catch(BinancePayDeserializeException e)
         {
-            return new BinancePayResult<TResponse>(
-                errorMessage: e.Message,
-                statusCode: response.StatusCode,
-                binanceStatusCode: BinanceStatusCodeConst.RequestError,
-                requestStatus: RequestStatus.Fail,
-                body: default);
+            return e.AsBinancePayResult<TResponse>(statusCode);
         }
     }
 
