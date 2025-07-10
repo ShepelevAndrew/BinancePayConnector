@@ -1,0 +1,51 @@
+﻿namespace BinancePayConnector.Core.Models.C2B.RestApi.SubMerchant.Common.Enums;
+
+public static class MccCode
+{
+    public const string AccommodationAndFoodServices = "1001";
+    public const string AdministrativeAndSupportAndWasteManagementAndRemediationServices = "1002";
+    public const string AgricultureForestryFishingAndHunting = "1004";
+    public const string ArtsEntertainmentAndRecreation = "1005";
+    public const string Construction = "1006";
+    public const string Broker = "1007";
+    public const string CryptoAtm = "1008";
+    public const string CryptoMining = "1009";
+    public const string ProprietaryCryptoTraders = "1010";
+    public const string AlgorithmCryptoTraders = "1011";
+    public const string P2PMerchants = "1012";
+    public const string OtherDigitalAssetServicesProviderVasp = "1013";
+    public const string Bank = "1014";
+    public const string NonBankFinancialInstitution = "1015";
+    public const string MoneyServicesBusinessAndPaymentServiceProviders = "1016";
+    public const string FamilyOffice = "1017";
+    public const string PersonalInvestmentCompanies = "1018";
+    public const string SuperannuationFund = "1019";
+    public const string SovereignWealthFund = "1020";
+    public const string InvestmentFunds = "1021";
+    public const string EducationalServices = "1022";
+    public const string Betting = "1024";
+    public const string HealthCareAndSocialAssistance = "1025";
+    public const string Information = "1026";
+    public const string GeneralWholesalers = "1027";
+    public const string ManagementOfCompaniesAndEnterprises = "1028";
+    public const string PreciousStonesAndPreciousMetalsDealers = "1029";
+    public const string CrudeOilAndNaturalGasDealers = "1030";
+    public const string GeneralManufacturing = "1031";
+    public const string Marijuana = "1032";
+    public const string MiningAndExtraction = "1033";
+    public const string PawnShops = "1034";
+    public const string ProfessionalServices = "1035";
+    public const string ScientificAndTechnicalServices = "1036";
+    public const string PublicAdministration = "1037";
+    public const string RealEstateRentalAndLeasing = "1038";
+    public const string RetailStoresElectronics = "1039";
+    public const string RetailStoresFb = "1040";
+    public const string RetailStoresJewelry = "1041";
+    public const string RetailTradeOthers = "1042";
+    public const string SaleOfDrugsAndPharmaceuticalProducts = "1043";
+    public const string Tobacco = "1044";
+    public const string TransportationAndWarehousing = "1045";
+    public const string Utilities = "1046";
+    public const string OtherCryptoWeb3ServicesNonVasp = "1047";
+    public const string Other = "9999";
+}
