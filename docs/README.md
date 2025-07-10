@@ -1,4 +1,4 @@
-# <img alt="BPC" src="../assets/binance-pay-connector-icon.png" width="32"/> BinancePayConnector – Seamless Binance Pay Integration for .NET 💳🔐
+# <img alt="BPC" src="../assets/binance-pay-connector-icon.png" width="32"/> BinancePayConnector – Binance Pay Integration for .NET 💳🔐
 
 [![NuGet Downloads](https://img.shields.io/nuget/dt/BinancePayConnector.svg)](https://www.nuget.org/packages/BinancePayConnector) [![NuGet Version](https://img.shields.io/nuget/v/BinancePayConnector.svg)](https://www.nuget.org/packages/BinancePayConnector)
 
