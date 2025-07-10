@@ -1,5 +1,5 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Config.Options;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Config.Options;
 using BinancePayConnector.Services;
 using BinancePayConnector.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -35,7 +35,6 @@ public static class Bootstrap
     {
         services.AddScoped<IBinancePayClient, BinancePayClient>();
         services.AddScoped<IBinancePay, BinancePay>();
-        services.AddScoped<IBinancePaySlim, BinancePaySlim>();
         services.AddBinancePayServices();
     }
 
