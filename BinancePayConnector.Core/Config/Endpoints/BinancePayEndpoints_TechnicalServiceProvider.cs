@@ -1,4 +1,4 @@
-﻿namespace BinancePayConnector.Config.Endpoints;
+﻿namespace BinancePayConnector.Core.Config.Endpoints;
 
 public static partial class BinancePayEndpoints
 {

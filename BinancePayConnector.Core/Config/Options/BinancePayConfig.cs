@@ -1,4 +1,4 @@
-﻿namespace BinancePayConnector.Config.Options;
+﻿namespace BinancePayConnector.Core.Config.Options;
 
 public sealed class BinancePayConfig
 {

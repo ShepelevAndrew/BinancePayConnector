@@ -1,8 +1,6 @@
-﻿namespace BinancePayConnector.Config.Options;
+﻿namespace BinancePayConnector.Core.Config.Options;
 
 public sealed class BinancePayWebhookConfig
 {
     public string BaseUri { get; init; } = null!;
-
-    public string? OrderRoute { get; init; }
 }
