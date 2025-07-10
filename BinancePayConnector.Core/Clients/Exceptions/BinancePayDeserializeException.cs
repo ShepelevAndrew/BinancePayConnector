@@ -1,4 +1,4 @@
-﻿namespace BinancePayConnector.Clients.Exceptions;
+﻿namespace BinancePayConnector.Core.Clients.Exceptions;
 
 public class BinancePayDeserializeException : ArgumentNullException
 {
