@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BinancePayConnector.Clients;
+namespace BinancePayConnector.Core.Clients;
 
 public interface IBinanceHttpHeadersProcessing
 {
