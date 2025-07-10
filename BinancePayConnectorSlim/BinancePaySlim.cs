@@ -1,13 +1,13 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.Models.Result;
-using BinancePayConnector.Clients.WebHookListener;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Helpers;
-using BinancePayConnector.MediatrStyle.Abstractions;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Common;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.Models;
+using BinancePayConnector.Core.Clients.WebHookListener;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Models.Abstractions;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
+using BinancePayConnectorSlim.Helpers;
 
-namespace BinancePayConnector;
+namespace BinancePayConnectorSlim;
 
 public class BinancePaySlim : IBinancePaySlim
 {
