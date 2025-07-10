@@ -1,4 +1,4 @@
-# BinancePayConnector – Seamless Binance Pay Integration for .NET 💳🔐
+# <img alt="BPC" src="../assets/binance-pay-connector-icon.png" width="32"/> BinancePayConnector – Binance Pay Integration for .NET 💳🔐
 
 [![NuGet Downloads](https://img.shields.io/nuget/dt/BinancePayConnector.svg)](https://www.nuget.org/packages/BinancePayConnector) [![NuGet Version](https://img.shields.io/nuget/v/BinancePayConnector.svg)](https://www.nuget.org/packages/BinancePayConnector)
 
@@ -243,5 +243,9 @@ I think do it by base virtual methods like "MapTo" in Result models for mapping 
 - etc.
 
 ### 4. Write end to end tests for requests
+
+### 5. Add xml documentation to all methods and classes
+
+### 6. Do auto chossing server depense on ping response
 
 ---
