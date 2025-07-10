@@ -1,4 +1,4 @@
-namespace BinancePayConnector.Domain;
+namespace BinancePayConnector.Core.Domain;
 
 public sealed class BinancePayId
 {
