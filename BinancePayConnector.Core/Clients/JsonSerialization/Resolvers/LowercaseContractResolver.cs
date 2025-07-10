@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Newtonsoft.Json.Serialization;
 
-namespace BinancePayConnector.Clients.JsonSerialization.Resolvers;
+namespace BinancePayConnector.Core.Clients.JsonSerialization.Resolvers;
 
 public class LowercaseContractResolver : DefaultContractResolver
 {
