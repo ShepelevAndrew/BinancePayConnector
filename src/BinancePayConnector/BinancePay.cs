@@ -1,8 +1,8 @@
-﻿using BinancePayConnector.Clients;
-using BinancePayConnector.Clients.WebHookListener;
-using BinancePayConnector.Config.Options;
-using BinancePayConnector.Models.C2B.Common.Enums;
-using BinancePayConnector.Models.C2B.Webhook.Common;
+﻿using BinancePayConnector.Core.Clients;
+using BinancePayConnector.Core.Clients.WebHookListener;
+using BinancePayConnector.Core.Config.Options;
+using BinancePayConnector.Core.Models.C2B.Common.Enums;
+using BinancePayConnector.Core.Models.C2B.Webhook.Common;
 using BinancePayConnector.Services;
 using BinancePayConnector.Services.Interfaces;
 
@@ -33,7 +33,6 @@ public class BinancePay : IBinancePay
     }
 
     public BinancePay(
-        IBinancePayReceiver binancePayReceiver,
         IBinancePayOrderService orderService,
         IBinancePayTransferFundService transferFundService,
         IBinancePaySubMerchantService subMerchantService,
@@ -46,8 +45,6 @@ public class BinancePay : IBinancePay
         IBinancePayShareInfoService shareInfo,
         IBinancePayTechnicalServiceProviderService technicalServiceProvider)
     {
-        _binancePayReceiver = binancePayReceiver;
-
         Order = orderService;
         TransferFund = transferFundService;
         SubMerchant = subMerchantService;

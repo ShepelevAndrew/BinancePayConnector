@@ -1,4 +1,4 @@
-﻿using BinancePayConnector.Clients.WebHookListener;
+﻿using BinancePayConnector.Core.Clients.WebHookListener;
 using BinancePayConnector.Services.Interfaces;
 
 namespace BinancePayConnector;
