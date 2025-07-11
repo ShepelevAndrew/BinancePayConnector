@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BinancePayConnector;
 using BinancePayConnector.Core.Clients;
 using BinancePayConnector.Core.Clients.Models;
 using BinancePayConnector.Core.Config.Endpoints;
@@ -14,7 +13,7 @@ using BinancePayConnector.Models.Order.CreateOrder;
 
 using BinancePayConnectorSlim;
 
-namespace PerformanceMeasure;
+namespace BinancePayConnector.Benchmarks;
 
 [MemoryDiagnoser]
 public class BenchmarkTest

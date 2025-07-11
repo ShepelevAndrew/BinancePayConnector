@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using PerformanceMeasure;
+using BinancePayConnector.Benchmarks;
 
 var summary = BenchmarkRunner.Run<BenchmarkTest>();
