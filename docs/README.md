@@ -259,4 +259,6 @@ I think do it by base virtual methods like "MapTo" in Result models for mapping 
 
 ### 4. Add xml documentation to all methods and classes
 
+### 5. Verify webhook answers from binance
+
 ---
